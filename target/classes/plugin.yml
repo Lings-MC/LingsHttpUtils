@@ -1,0 +1,19 @@
+name: LingsHTTPUtils
+version: '1.0'
+main: cn.lingsmc.lingshttputils.LingsHTTPUtils
+depend: [ PlaceholderAPI ]
+authors: [ Crsuh2er0 ]
+description: Connect website text with PAPI.
+api-version: 1.12
+loadbefore:
+  - LingsHTTPUtils
+commands:
+  lingshttputils:
+    description: LingsHTTPUtils插件指令
+    aliases:
+      - lhu
+    usage: |
+      /lhu help
+permissions:
+  lingshttputils.admin:
+    description: LingsHTTPUtils插件管理权限
