@@ -2,7 +2,6 @@ package cn.lingsmc.lingshttputils.asyncworkers;
 
 import cn.lingsmc.lingshttputils.LingsHTTPUtils;
 import cn.lingsmc.lingshttputils.requesters.HTTPRequester;
-import cn.lingsmc.lingshttputils.senders.MessageSender;
 import cn.lingsmc.lingshttputils.utils.JsonUtils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -18,8 +17,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class AsyncWorkers {
     @Getter
     private final FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
-    @Getter
-    Runnable taskB;
     @Getter
     Runnable task;
 
@@ -38,7 +35,7 @@ public class AsyncWorkers {
                 try {
                     Thread.sleep(refInterval);
                 } catch (InterruptedException e) {
-                    LingsHTTPUtils.getInstance().getLogger().info("出现错误!请到GitHub反馈此问题!");
+                    LingsHTTPUtils.getInstance().getLogger().info("出现错误!模块请求间隔必须为正值!");
                     e.printStackTrace();
                 }
                 Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin(LingsHTTPUtils.getInstance().getName()), task);

@@ -27,7 +27,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getAuthor() {
-        return LingsHTTPUtils.getInstance().getDescription().getAuthors().toString();
+        return this.plugin.getDescription().getAuthors().toString();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return LingsHTTPUtils.getInstance().getDescription().getVersion();
+        return this.plugin.getDescription().getVersion();
     }
 
     @Override
@@ -72,7 +72,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
                     return res;
                 } else {
                     // Cycle
-                    return LingsHTTPUtils.getInstance().getHttpData().get(module);
+                    return this.plugin.getHttpData().get(module);
                 }
             }
         }

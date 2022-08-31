@@ -15,11 +15,12 @@ import java.util.concurrent.Executors;
  * @apiNote
  */
 public class WorkerOptions {
-    private WorkerOptions(){
-    }
     @Getter
     static boolean started = true;
     private static ExecutorService newFixedThreadPool;
+
+    private WorkerOptions() {
+    }
 
     public static void runWorkers() {
         started = true;
