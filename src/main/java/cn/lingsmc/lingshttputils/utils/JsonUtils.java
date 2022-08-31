@@ -26,7 +26,7 @@ public class JsonUtils {
         if (depth == keys.length - 1) {
             return json.get(keys[keys.length - 1]).getAsString();
         }
-        json = json.get(keys[depth++]).getAsJsonObject();
+        json = json.get(keys[depth]).getAsJsonObject();
         int nextDepth = depth + 1;
         return getValue(json, keys, nextDepth);
     }
