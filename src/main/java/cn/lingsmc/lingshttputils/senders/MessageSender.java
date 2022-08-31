@@ -2,7 +2,9 @@ package cn.lingsmc.lingshttputils.senders;
 
 import cn.lingsmc.lingshttputils.LingsHTTPUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Crsuh2er0
@@ -15,7 +17,10 @@ public class MessageSender {
     private MessageSender() {
     }
 
-    public static void sendMessage(Player p, String message) {
+    public static void sendMessage(@NotNull Player p, String message) {
+        p.sendMessage(String.format("%s%s", MESSAGE_HEAD, message));
+    }
+    public static void sendMessage(@NotNull CommandSender p, String message) {
         p.sendMessage(String.format("%s%s", MESSAGE_HEAD, message));
     }
 }

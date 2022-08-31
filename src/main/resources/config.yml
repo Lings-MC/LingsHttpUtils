@@ -30,7 +30,7 @@ bilibili_followers:
   mode: "json"
   method: "GET"
   key: "data.follower"
-  reqTime: 1000
+  reqTime: 10000
   reqMode: "Cycle"
   refInterval: 30000
 saying:
@@ -39,6 +39,6 @@ saying:
   mode: "json"
   method: "GET"
   key: "hitokoto"
-  reqTime: 1000
+  reqTime: 10000
   reqMode: "Cycle"
   refInterval: 15000

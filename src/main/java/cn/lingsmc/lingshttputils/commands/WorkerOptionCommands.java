@@ -31,17 +31,17 @@ public class WorkerOptionCommands {
             case "start":
                 if (!WorkerOptions.isStarted()) {
                     WorkerOptions.runWorkers();
-                    MessageSender.sendMessage((Player) sender, String.format("%s正在启动Cycle Workers...", ChatColor.GREEN));
+                    MessageSender.sendMessage(sender, String.format("%s正在启动Cycle Workers...", ChatColor.GREEN));
                 } else {
-                    MessageSender.sendMessage((Player) sender, String.format("%sCycle Workers已启动!", ChatColor.RED));
+                    MessageSender.sendMessage(sender, String.format("%sCycle Workers已启动!", ChatColor.RED));
                 }
                 return;
             case "stop":
                 if (WorkerOptions.isStarted()) {
                     WorkerOptions.stopWorkers();
-                    MessageSender.sendMessage((Player) sender, String.format("%s正在关闭Cycle Workers...", ChatColor.GREEN));
+                    MessageSender.sendMessage(sender, String.format("%s正在关闭Cycle Workers...", ChatColor.GREEN));
                 } else {
-                    MessageSender.sendMessage((Player) sender, String.format("%sCycle Workers已关闭!", ChatColor.RED));
+                    MessageSender.sendMessage(sender, String.format("%sCycle Workers已关闭!", ChatColor.RED));
                 }
                 return;
             default:
