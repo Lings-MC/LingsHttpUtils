@@ -33,8 +33,8 @@ bilibili_followers:
   reqTime: 10000
   reqMode: "Cycle"
   refInterval: 30000
-saying:
-  apiname: "saying"
+hitokoto:
+  apiname: "hitokoto"
   url: "https://v1.hitokoto.cn/"
   mode: "json"
   method: "GET"
