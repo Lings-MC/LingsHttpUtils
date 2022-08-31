@@ -15,6 +15,7 @@
 # url 要请求的网页链接
 #
 # reqTime 请求超时时间(ms)
+# 仅当reqMode: Cycle时可用
 #
 # refInterval 请求间隔时间
 #
