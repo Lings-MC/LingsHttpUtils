@@ -6,6 +6,7 @@ import cn.lingsmc.lingshttputils.utils.JsonUtils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 
@@ -38,9 +39,9 @@ public class AsyncWorkers {
                     LingsHTTPUtils.getInstance().getLogger().info("出现错误!模块请求间隔必须为正值!");
                     e.printStackTrace();
                 }
-                Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin(LingsHTTPUtils.getInstance().getName()), task);
+                Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
             }
         };
-        Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin(LingsHTTPUtils.getInstance().getName()), task);
+        Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
     }
 }

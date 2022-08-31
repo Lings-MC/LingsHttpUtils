@@ -4,9 +4,7 @@ main: cn.lingsmc.lingshttputils.LingsHTTPUtils
 depend: [ PlaceholderAPI ]
 authors: [ Crsuh2er0 ]
 description: Connect website text with PAPI.
-api-version: 1.12
-loadbefore:
-  - LingsHTTPUtils
+
 commands:
   lingshttputils:
     description: LingsHTTPUtils插件指令

@@ -53,6 +53,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
         for (String module : modules) {
             if (Objects.equals(params, config.getString(String.format("%s.apiname", module)))) {
                 if ("inTime".equals(config.getString(String.format("%s.reqMode", module)))) {
+                    // inTime
                     int reqTime = config.getInt(String.format("%s.reqTime", module));
                     String url = config.getString(String.format("%s.url", module));
                     String method;
