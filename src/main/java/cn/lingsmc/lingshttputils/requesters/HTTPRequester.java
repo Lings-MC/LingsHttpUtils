@@ -1,6 +1,7 @@
 package cn.lingsmc.lingshttputils.requesters;
 
 import cn.lingsmc.lingshttputils.LingsHTTPUtils;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class HTTPRequester {
     private HTTPRequester() {
     }
 
-    public static String request(String httpUrl, int reqTime, String method) {
+    public static @Nullable String request(String httpUrl, int reqTime, String method) {
         HttpURLConnection connection = null;
         InputStream is = null;
         BufferedReader br = null;

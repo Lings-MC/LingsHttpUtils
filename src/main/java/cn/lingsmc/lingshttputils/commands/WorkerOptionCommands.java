@@ -46,6 +46,7 @@ public class WorkerOptionCommands {
                 return;
             default:
                 sender.sendMessage(helpMessage);
+                break;
         }
     }
 }

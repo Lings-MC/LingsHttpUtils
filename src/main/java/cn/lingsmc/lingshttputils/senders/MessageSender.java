@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
  * @apiNote
  */
 public class MessageSender {
-    static final String MESSAGE_HEAD = String.format("%s[%s%s%s] %s", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHTTPUtils.getInstance().getName(), ChatColor.DARK_AQUA, ChatColor.RESET);
+    public static final String MESSAGE_HEAD = String.format("%s[%s%s%s] %s", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHTTPUtils.getInstance().getName(), ChatColor.DARK_AQUA, ChatColor.RESET);
 
     private MessageSender() {
     }

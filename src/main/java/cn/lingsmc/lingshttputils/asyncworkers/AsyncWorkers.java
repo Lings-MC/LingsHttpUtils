@@ -2,6 +2,7 @@ package cn.lingsmc.lingshttputils.asyncworkers;
 
 import cn.lingsmc.lingshttputils.LingsHTTPUtils;
 import cn.lingsmc.lingshttputils.requesters.HTTPRequester;
+import cn.lingsmc.lingshttputils.senders.MessageSender;
 import cn.lingsmc.lingshttputils.utils.JsonUtils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -37,7 +38,8 @@ public class AsyncWorkers {
                 try {
                     Thread.sleep(refInterval);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    LingsHTTPUtils.getInstance().getLogger().info(String.format("%s 出现错误!请到GitHub反馈此问题!", MessageSender.MESSAGE_HEAD));
+                    e.printStackTrace();
                 }
                 Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin(LingsHTTPUtils.getInstance().getName()), task);
             }

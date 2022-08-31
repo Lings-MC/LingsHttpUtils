@@ -19,10 +19,6 @@ public class WorkerOptions {
     static boolean started = true;
     private static ExecutorService newFixedThreadPool;
 
-
-    public WorkerOptions() {
-    }
-
     public static void runWorkers() {
         started = true;
         newFixedThreadPool = Executors.newFixedThreadPool(2);
