@@ -38,7 +38,7 @@ public class AsyncWorkers {
                 try {
                     Thread.sleep(refInterval);
                 } catch (InterruptedException e) {
-                    LingsHTTPUtils.getInstance().getLogger().info(String.format("%s 出现错误!请到GitHub反馈此问题!", MessageSender.MESSAGE_HEAD));
+                    LingsHTTPUtils.getInstance().getLogger().info("出现错误!请到GitHub反馈此问题!");
                     e.printStackTrace();
                 }
                 Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin(LingsHTTPUtils.getInstance().getName()), task);

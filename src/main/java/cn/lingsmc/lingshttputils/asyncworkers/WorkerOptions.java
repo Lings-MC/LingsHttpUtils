@@ -15,14 +15,16 @@ import java.util.concurrent.Executors;
  * @apiNote
  */
 public class WorkerOptions {
+    private WorkerOptions(){
+    }
     @Getter
     static boolean started = true;
     private static ExecutorService newFixedThreadPool;
 
     public static void runWorkers() {
         started = true;
-        newFixedThreadPool = Executors.newFixedThreadPool(2);
         Set<String> modules = LingsHTTPUtils.getInstance().getConfig().getKeys(false);
+        newFixedThreadPool = Executors.newFixedThreadPool(modules.size());
         FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
         for (String module : modules) {
             if (Objects.equals(config.getString(String.format("%s.reqMode", module)), "Cycle")) {
@@ -50,6 +52,7 @@ public class WorkerOptions {
     }
 
     public static void stopWorkers() {
+        // TODO 修复无法停止线程的问题
         LingsHTTPUtils.getInstance().getLogger().info("尝试关闭Cycle Worker...");
         newFixedThreadPool.shutdownNow();
         started = false;
