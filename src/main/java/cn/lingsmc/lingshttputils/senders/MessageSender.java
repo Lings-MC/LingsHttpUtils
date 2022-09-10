@@ -20,6 +20,7 @@ public class MessageSender {
     public static void sendMessage(@NotNull Player p, String message) {
         p.sendMessage(String.format("%s%s", MESSAGE_HEAD, message));
     }
+
     public static void sendMessage(@NotNull CommandSender p, String message) {
         p.sendMessage(String.format("%s%s", MESSAGE_HEAD, message));
     }

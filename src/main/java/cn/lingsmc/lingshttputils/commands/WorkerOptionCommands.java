@@ -4,7 +4,6 @@ import cn.lingsmc.lingshttputils.asyncworkers.WorkerOptions;
 import cn.lingsmc.lingshttputils.senders.MessageSender;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import static cn.lingsmc.lingshttputils.commands.Commands.helpMessage;
