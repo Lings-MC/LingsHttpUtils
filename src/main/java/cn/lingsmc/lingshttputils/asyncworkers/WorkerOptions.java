@@ -25,6 +25,7 @@ public class WorkerOptions {
     public static void runWorkers() {
         started = true;
         Set<String> modules = LingsHTTPUtils.getInstance().getConfig().getKeys(false);
+        modules.remove("version");
         newFixedThreadPool = Executors.newFixedThreadPool(modules.size());
         FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
         for (String module : modules) {
@@ -53,7 +54,6 @@ public class WorkerOptions {
     }
 
     public static void stopWorkers() {
-        // TODO 修复无法停止线程的问题
         LingsHTTPUtils.getInstance().getLogger().info("尝试关闭Cycle Worker...");
         newFixedThreadPool.shutdownNow();
         started = false;
