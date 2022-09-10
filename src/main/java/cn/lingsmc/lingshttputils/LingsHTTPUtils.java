@@ -5,8 +5,10 @@ import cn.lingsmc.lingshttputils.asyncworkers.WorkerOptions;
 import cn.lingsmc.lingshttputils.commands.Commands;
 import cn.lingsmc.lingshttputils.commands.TabComplete;
 import cn.lingsmc.lingshttputils.placeholderapi.PlaceholderAPI;
+import cn.lingsmc.lingshttputils.utils.YumBypassUtils;
 import com.google.common.collect.Maps;
 import lombok.Getter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -42,6 +44,11 @@ public final class LingsHTTPUtils extends JavaPlugin {
         final PluginCommand command = this.getCommand(instance.getName());
         command.setExecutor(new Commands());
         command.setTabCompleter(new TabComplete());
+        // 绕过Yum网络监控
+        Bukkit.getPluginManager().registerEvents(new YumBypassUtils(), this);
+        // bStats支持
+        int pluginId = 16397;
+        Metrics metrics = new Metrics(this, pluginId);
         // 运行Cycle worker
         WorkerOptions.runWorkers();
     }
