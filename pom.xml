@@ -102,5 +102,12 @@
             <version>3.0.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>yumc</groupId>
+            <artifactId>Yum</artifactId>
+            <version>LOCAL</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Yum.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
