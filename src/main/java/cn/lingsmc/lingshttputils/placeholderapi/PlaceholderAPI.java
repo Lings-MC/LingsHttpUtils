@@ -52,7 +52,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
         Set<String> modules = config.getKeys(false);
         for (String module : modules) {
             if (Objects.equals(params, config.getString(String.format("%s.apiname", module)))) {
-                if ("inTime".equals(config.getString(String.format("%s.reqMode", module)))) {
+                if ("inTime".equalsIgnoreCase(config.getString(String.format("%s.reqMode", module)))) {
                     // inTime
                     int reqTime = config.getInt(String.format("%s.reqTime", module));
                     String url = config.getString(String.format("%s.url", module));
@@ -66,7 +66,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
                     if (res == null) {
                         return "";
                     }
-                    if ("json".equals(config.getString(String.format("%s.mode", module)))) {
+                    if ("json".equalsIgnoreCase(config.getString(String.format("%s.mode", module)))) {
                         String[] keys = config.getString(String.format("%s.key", module)).split("\\.");
                         res = JsonUtils.getValue(JsonUtils.parseStr(res), keys, 0);
                     }
