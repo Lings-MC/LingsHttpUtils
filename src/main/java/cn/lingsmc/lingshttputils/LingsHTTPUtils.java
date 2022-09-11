@@ -37,7 +37,7 @@ public final class LingsHTTPUtils extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
-        pluginName = getDescription().getName();
+        pluginName = "LingsHTTPUtils";
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
     }
