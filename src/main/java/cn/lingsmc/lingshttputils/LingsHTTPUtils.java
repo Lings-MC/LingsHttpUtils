@@ -6,10 +6,12 @@ import cn.lingsmc.lingshttputils.commands.Commands;
 import cn.lingsmc.lingshttputils.commands.TabComplete;
 import cn.lingsmc.lingshttputils.placeholderapi.PlaceholderAPI;
 import com.google.common.collect.Maps;
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import lombok.Getter;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import pw.yumc.Yum.config.FileConfig;
@@ -34,13 +36,15 @@ public final class LingsHTTPUtils extends JavaPlugin {
 
     @Getter
     private String pluginName;
+    @Getter
+    private static FileConfiguration config;
 
     @Override
     public void onLoad() {
         instance = this;
         pluginName = "LingsHTTPUtils";
         saveDefaultConfig();
-        getConfig().options().copyDefaults(true);
+        config = LingsHTTPUtils.getConfig();
     }
 
     @Override

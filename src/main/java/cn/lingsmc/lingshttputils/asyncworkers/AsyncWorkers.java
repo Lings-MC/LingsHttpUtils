@@ -15,7 +15,6 @@ import org.bukkit.scheduler.BukkitRunnable;
  * @apiNote
  */
 public class AsyncWorkers {
-    private final FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
     Runnable task;
 
     public void asyncworker(String module, int reqTime, String url, String method, int refInterval, String[] keys) {
@@ -26,7 +25,7 @@ public class AsyncWorkers {
                 if (res == null) {
                     return;
                 }
-                if ("json".equalsIgnoreCase(config.getString(String.format("%s.mode", module)))) {
+                if ("json".equalsIgnoreCase(LingsHTTPUtils.getConfig().getString(String.format("%s.mode", module)))) {
                     res = JsonUtils.getValue(JsonUtils.parseStr(res), keys, 0);
                 }
                 LingsHTTPUtils.getInstance().getHttpData().put(module, res);
