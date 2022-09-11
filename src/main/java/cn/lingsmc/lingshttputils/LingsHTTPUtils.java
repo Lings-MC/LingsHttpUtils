@@ -36,8 +36,8 @@ public final class LingsHTTPUtils extends JavaPlugin {
 
     @Getter
     private String pluginName;
-    @Getter
-    private static FileConfiguration config;
+
+    public static FileConfiguration config;
 
     @Override
     public void onLoad() {
