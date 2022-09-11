@@ -6,7 +6,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * @author Crsuh2er0
@@ -57,8 +59,8 @@ public class WorkerOptions {
                 Runnable runnable = () -> asyncWorkers.asyncworker(module, reqTime, url, method, refInterval, finalKeys);
                 //newFixedThreadPool.execute(runnable);
                 Thread t = threadFactory.newThread(runnable);
-                t.setName(String.format("LHU-%s",module));
-                LingsHTTPUtils.getInstance().getLogger().info(String.format("尝试启动%s...",t.getName()));
+                t.setName(String.format("LHU-%s", module));
+                LingsHTTPUtils.getInstance().getLogger().info(String.format("尝试启动%s...", t.getName()));
                 t.start();
             }
         }

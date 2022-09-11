@@ -4,7 +4,6 @@ import cn.lingsmc.lingshttputils.LingsHTTPUtils;
 import cn.lingsmc.lingshttputils.requesters.HTTPRequester;
 import cn.lingsmc.lingshttputils.utils.JsonUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
