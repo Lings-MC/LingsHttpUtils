@@ -3,7 +3,6 @@ package cn.lingsmc.lingshttputils.asyncworkers;
 import cn.lingsmc.lingshttputils.LingsHTTPUtils;
 import cn.lingsmc.lingshttputils.requesters.HTTPRequester;
 import cn.lingsmc.lingshttputils.utils.JsonUtils;
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,10 +15,9 @@ import org.bukkit.scheduler.BukkitRunnable;
  * @apiNote
  */
 public class AsyncWorkers {
-    @Getter
     private final FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
-    @Getter
     Runnable task;
+    Runnable cycleTask;
 
     public void asyncworker(String module, int reqTime, String url, String method, int refInterval, String[] keys) {
         task = new BukkitRunnable() {
@@ -41,8 +39,14 @@ public class AsyncWorkers {
                 }
             }
         };
-        while(WorkerOptions.isStarted()){
-            Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
-        }
+        cycleTask = new BukkitRunnable() {
+            @Override
+            public void run() {
+                while(WorkerOptions.isStarted()){
+                    Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
+                }
+            }
+        };
+        Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), cycleTask);
     }
 }
