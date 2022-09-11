@@ -42,12 +42,12 @@ public class WorkerOptions {
                     method = "GET";
                 }
                 String[] keys = new String[0];
-                if ("json".equals(config.getString(String.format("%s.mode", module)))) {
+                if ("json".equalsIgnoreCase(config.getString(String.format("%s.mode", module)))) {
                     keys = config.getString(String.format("%s.key", module)).split("\\.");
                 }
                 String[] finalKeys = keys;
                 Runnable runnable = () -> asyncWorkers.asyncworker(module, reqTime, url, method, refInterval, finalKeys);
-                LingsHTTPUtils.getInstance().getLogger().info("尝试启动Cycle Worker...");
+                LingsHTTPUtils.getInstance().getLogger().info("尝试启动Cycle Workers...");
                 newFixedThreadPool.execute(runnable);
             }
         }
