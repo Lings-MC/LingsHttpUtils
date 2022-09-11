@@ -33,8 +33,6 @@ public class WorkerOptions {
             return new Thread(runnable);
         };
 
-        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(modules.size(), modules.size(), Integer.MAX_VALUE, TimeUnit.DAYS, new LinkedBlockingQueue<>(modules.size()), threadFactory);
-
         newFixedThreadPool = Executors.newFixedThreadPool(modules.size());
         FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
         for (String module : modules) {
@@ -56,10 +54,10 @@ public class WorkerOptions {
                 }
                 String[] finalKeys = keys;
                 Runnable runnable = () -> asyncWorkers.asyncworker(module, reqTime, url, method, refInterval, finalKeys);
-                LingsHTTPUtils.getInstance().getLogger().info("尝试启动Cycle Workers...");
                 //newFixedThreadPool.execute(runnable);
                 Thread t = threadFactory.newThread(runnable);
                 t.setName(String.format("LHU-%s",module));
+                LingsHTTPUtils.getInstance().getLogger().info(String.format("尝试启动%s...",t.getName()));
                 t.start();
             }
         }
