@@ -25,7 +25,7 @@ public class AsyncWorkers {
                 if (res == null) {
                     return;
                 }
-                if ("json".equalsIgnoreCase(LingsHTTPUtils.getConfig().getString(String.format("%s.mode", module)))) {
+                if ("json".equalsIgnoreCase(LingsHTTPUtils.getInstance().getConfig().getString(String.format("%s.mode", module)))) {
                     res = JsonUtils.getValue(JsonUtils.parseStr(res), keys, 0);
                 }
                 LingsHTTPUtils.getInstance().getHttpData().put(module, res);

@@ -37,14 +37,14 @@ public final class LingsHTTPUtils extends JavaPlugin {
     @Getter
     private String pluginName;
     @Getter
-    private static FileConfiguration config;
+    private FileConfiguration config;
 
     @Override
     public void onLoad() {
         instance = this;
         pluginName = "LingsHTTPUtils";
         saveDefaultConfig();
-        config = LingsHTTPUtils.getConfig();
+        config = this.getConfig();
     }
 
     @Override
