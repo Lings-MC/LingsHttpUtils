@@ -44,7 +44,6 @@ public class HTTPRequester {
             }
         } catch (IOException e) {
             LingsHTTPUtils.getInstance().getLogger().info("请求失败!");
-            e.printStackTrace();
             return null;
         } finally {
             if (br != null) {
