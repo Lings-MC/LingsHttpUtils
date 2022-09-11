@@ -24,7 +24,8 @@ public class WorkerOptions {
 
     public static void runWorkers() {
         started = true;
-        Set<String> modules = LingsHTTPUtils.getInstance().getConfig().getKeys(false);
+        FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
+        Set<String> modules = config.getKeys(false);
         modules.remove("version");
 
         ThreadFactory threadFactory = runnable -> {
@@ -34,7 +35,7 @@ public class WorkerOptions {
         };
 
         newFixedThreadPool = Executors.newFixedThreadPool(modules.size());
-        FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
+
         for (String module : modules) {
             if (Objects.equals(config.getString(String.format("%s.reqMode", module)), "Cycle")) {
                 // 一定要为每个module设置一个worker
