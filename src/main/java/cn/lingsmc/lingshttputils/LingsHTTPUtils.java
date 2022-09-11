@@ -16,8 +16,7 @@ import pw.yumc.Yum.config.FileConfig;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 /**
@@ -58,7 +57,9 @@ public final class LingsHTTPUtils extends JavaPlugin {
             final File file = new File(System.getProperty("user.dir") + "/plugins/Yum/network.yml");
             FileConfig fileConfig = new FileConfig(file);
             if(!fileConfig.getStringList("Ignore").contains(pluginName)){
-                fileConfig.set("Ignore",fileConfig.getStringList("Ignore").add(pluginName));
+                List<String> ignoreList = fileConfig.getStringList("Ignore");
+                ignoreList.add(pluginName);
+                fileConfig.set("Ignore",ignoreList);
                 try {
                     fileConfig.save(file);
                 } catch (IOException e) {
