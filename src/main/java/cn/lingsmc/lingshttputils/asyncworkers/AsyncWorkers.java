@@ -17,7 +17,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class AsyncWorkers {
     private final FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
     Runnable task;
-    Runnable cycleTask;
 
     public void asyncworker(String module, int reqTime, String url, String method, int refInterval, String[] keys) {
         task = new BukkitRunnable() {
@@ -37,16 +36,9 @@ public class AsyncWorkers {
                     LingsHTTPUtils.getInstance().getLogger().info("出现错误!模块请求间隔必须为正值!");
                     e.printStackTrace();
                 }
+                Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
             }
         };
-        cycleTask = new BukkitRunnable() {
-            @Override
-            public void run() {
-                while(WorkerOptions.isStarted()){
-                    Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
-                }
-            }
-        };
-        Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), cycleTask);
+        Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
     }
 }
