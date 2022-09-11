@@ -37,7 +37,7 @@ public final class LingsHTTPUtils extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
-        pluginName = this.getPluginName();
+        pluginName = getDescription().getName();
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
     }
@@ -45,7 +45,7 @@ public final class LingsHTTPUtils extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+        if (Objects.nonNull(Bukkit.getPluginManager().getPlugin("PlaceholderAPI"))) {
             new PlaceholderAPI(this).register();
         }
         final PluginCommand command = this.getCommand(instance.getName());
@@ -59,7 +59,6 @@ public final class LingsHTTPUtils extends JavaPlugin {
             if(!fileConfig.getStringList("Ignore").contains(pluginName)){
                 List<String> ignoreList = fileConfig.getStringList("Ignore");
                 ignoreList.add(pluginName);
-                fileConfig.set("Ignore",ignoreList);
                 try {
                     fileConfig.save(file);
                 } catch (IOException e) {
