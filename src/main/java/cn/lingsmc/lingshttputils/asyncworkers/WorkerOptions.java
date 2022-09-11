@@ -28,7 +28,7 @@ public class WorkerOptions {
         FileConfiguration config = LingsHTTPUtils.config;
         Set<String> modules = config.getKeys(false);
         modules.remove("version");
-        modules.removeIf(module -> Objects.equals(config.getString(String.format("%s.reqMode", module)), "Cycle"));
+        modules.removeIf(module -> !Objects.equals(config.getString(String.format("%s.reqMode", module)), "Cycle"));
 
         threadPool = new ThreadPoolExecutor(1, modules.size(),
                 1L, TimeUnit.SECONDS,
@@ -60,7 +60,7 @@ public class WorkerOptions {
     }
 
     public static void stopWorkers() {
-        LingsHTTPUtils.getInstance().getLogger().info("尝试关闭Cycle Worker...");
+        LingsHTTPUtils.getInstance().getLogger().info("尝试关闭Cycle Workers...");
         threadPool.shutdownNow();
         started = false;
     }
