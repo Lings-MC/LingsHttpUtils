@@ -47,8 +47,7 @@ public final class LingsHTTPUtils extends JavaPlugin {
         // 绕过Yum网络监控
         Bukkit.getPluginManager().registerEvents(new YumBypassUtils(), this);
         // bStats支持
-        int pluginId = 16397;
-        Metrics metrics = new Metrics(this, pluginId);
+        Metrics metrics = new Metrics(this, 16397);
         // 运行Cycle worker
         WorkerOptions.runWorkers();
     }
@@ -56,6 +55,8 @@ public final class LingsHTTPUtils extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        WorkerOptions.stopWorkers();
+        if(WorkerOptions.isStarted()){
+            WorkerOptions.stopWorkers();
+        }
     }
 }

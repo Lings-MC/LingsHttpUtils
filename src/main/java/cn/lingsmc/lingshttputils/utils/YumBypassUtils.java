@@ -6,6 +6,8 @@ import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import pw.yumc.Yum.events.PluginNetworkEvent;
 
+import java.util.Objects;
+
 /**
  * @author Crsuh2er0
  * &#064;date 2022/9/10
@@ -15,7 +17,7 @@ public class YumBypassUtils implements Listener {
 
     @EventHandler
     public void yumBypass(@NotNull PluginNetworkEvent e){
-        if(e.getPlugin() == LingsHTTPUtils.getInstance()){
+        if(Objects.equals(e.getPlugin(),LingsHTTPUtils.getInstance())){
             e.setCancelled(true);
         }
     }
