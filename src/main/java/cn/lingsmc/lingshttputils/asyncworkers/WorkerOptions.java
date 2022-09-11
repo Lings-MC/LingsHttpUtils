@@ -55,17 +55,6 @@ public class WorkerOptions {
                     keys = config.getString(String.format("%s.key", module)).split("\\.");
                 }
                 String[] finalKeys = keys;
-                for (int i = 0; i < 10; i++) {
-                    final int index = i;
-                    threadPool.execute(() -> {
-                        System.out.println(index + " 被执行,线程名:" + Thread.currentThread().getName());
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }
                 Runnable runnable = () -> asyncWorkers.asyncworker(module, reqTime, url, method, refInterval, finalKeys);
                 LingsHTTPUtils.getInstance().getLogger().info("尝试启动Cycle Workers...");
                 //newFixedThreadPool.execute(runnable);
