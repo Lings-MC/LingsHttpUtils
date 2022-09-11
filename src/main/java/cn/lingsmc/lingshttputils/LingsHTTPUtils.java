@@ -59,6 +59,7 @@ public final class LingsHTTPUtils extends JavaPlugin {
             if(!fileConfig.getStringList("Ignore").contains(pluginName)){
                 List<String> ignoreList = fileConfig.getStringList("Ignore");
                 ignoreList.add(pluginName);
+                fileConfig.set("Ignore",ignoreList);
                 try {
                     fileConfig.save(file);
                 } catch (IOException e) {
