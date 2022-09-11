@@ -14,13 +14,15 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Commands implements CommandExecutor {
     static String helpMessage = String.format("%s未知命令!输入/lhu help查看命令列表!", ChatColor.RED);
-    static String rootMessage = String.format("%s此服务器正在运行 %s%s %s%s by %s %n%s命令列表: %s/lhu help", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHTTPUtils.getInstance().getName(), LingsHTTPUtils.getInstance().getDescription().getVersion(), ChatColor.DARK_AQUA, "§aC§br§cs§du§eh§a2§be§cr§d0", ChatColor.DARK_AQUA, ChatColor.AQUA);
+    static String rootMessage1 = String.format("%s此服务器正在运行 %s%s %s%s by %s", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHTTPUtils.getInstance().getName(), LingsHTTPUtils.getInstance().getDescription().getVersion(), ChatColor.DARK_AQUA, "§aC§br§cs§du§eh§a2§be§cr§d0");
+    static String rootMessage2 = String.format("%s命令列表: %s/lhu help", ChatColor.DARK_AQUA, ChatColor.AQUA);
     static String permission = "lingshttputils.admin";
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (args.length < 1) {
-            sender.sendMessage(rootMessage);
+            sender.sendMessage(rootMessage1);
+            sender.sendMessage(rootMessage2);
             return true;
         }
         switch (args[0]) {
