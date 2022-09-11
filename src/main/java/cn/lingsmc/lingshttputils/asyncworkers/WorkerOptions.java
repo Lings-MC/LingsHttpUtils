@@ -36,7 +36,7 @@ public class WorkerOptions {
                 final String url = config.getString(String.format("%s.url", module));
                 final String method;
                 final int refInterval = config.getInt(String.format("%s.refInterval", module));
-                if (config.getString(String.format("%s.method", module)) != null) {
+                if (Objects.nonNull(config.getString(String.format("%s.method", module)))) {
                     method = config.getString(String.format("%s.method", module));
                 } else {
                     method = "GET";

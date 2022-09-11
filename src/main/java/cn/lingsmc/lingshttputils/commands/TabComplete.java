@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class TabComplete implements org.bukkit.command.TabCompleter {
     @Override
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String @NotNull [] args) {
 
         final String[] root = new String[]{"workers", "help", "reload"};
         final String[] worker = new String[]{"start", "stop"};
