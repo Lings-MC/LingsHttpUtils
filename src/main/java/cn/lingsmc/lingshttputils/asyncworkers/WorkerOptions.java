@@ -24,7 +24,7 @@ public class WorkerOptions {
 
     public static void runWorkers() {
         started = true;
-        FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
+        FileConfiguration config = LingsHTTPUtils.getConfig();
         Set<String> modules = config.getKeys(false);
         modules.remove("version");
 
