@@ -13,6 +13,7 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import pw.yumc.Yum.config.FileConfig;
+import pw.yumc.Yum.managers.ConfigManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +66,8 @@ public final class LingsHTTPUtils extends JavaPlugin {
                 } catch (IOException e) {
                     getLogger().info("警告! Yum配置修改失败!");
                 }
+                ConfigManager.i().reload();
+                getLogger().info("检测到Yum，已自动修改Yum配置防刷屏!");
             }
         }
         // bStats支持
