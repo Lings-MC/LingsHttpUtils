@@ -53,6 +53,7 @@ public final class LingsHTTPUtils extends JavaPlugin {
         command.setExecutor(new Commands());
         command.setTabCompleter(new TabComplete());
         // 绕过Yum网络监控
+        /*
         Plugin yum = Bukkit.getPluginManager().getPlugin("Yum");
         if (Objects.nonNull(yum)) {
             final File file = new File(System.getProperty("user.dir") + "/plugins/Yum/network.yml");
@@ -70,6 +71,7 @@ public final class LingsHTTPUtils extends JavaPlugin {
                 getLogger().info("检测到Yum，已自动修改Yum配置防刷屏!");
             }
         }
+        */
         // bStats支持
         int pluginId = 16397;
         Metrics metrics = new Metrics(this, pluginId);
