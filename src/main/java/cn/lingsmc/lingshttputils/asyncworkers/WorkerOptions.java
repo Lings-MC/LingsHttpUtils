@@ -4,10 +4,10 @@ import cn.lingsmc.lingshttputils.LingsHTTPUtils;
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 /**
@@ -18,7 +18,12 @@ import java.util.concurrent.ThreadFactory;
 public class WorkerOptions {
     @Getter
     static boolean started = true;
-    private static ExecutorService newFixedThreadPool;
+    static ThreadFactory threadFactory = runnable -> {
+        Thread thread = new Thread(runnable);
+        thread.setDaemon(true);
+        return new Thread(runnable);
+    };
+    static List<Thread> threads = new ArrayList<>();
 
 
     private WorkerOptions() {
@@ -29,14 +34,6 @@ public class WorkerOptions {
         FileConfiguration config = LingsHTTPUtils.config;
         Set<String> modules = config.getKeys(false);
         modules.remove("version");
-
-        ThreadFactory threadFactory = runnable -> {
-            Thread thread = new Thread(runnable);
-            thread.setDaemon(true);
-            return new Thread(runnable);
-        };
-
-        newFixedThreadPool = Executors.newFixedThreadPool(modules.size());
 
         for (String module : modules) {
             if (Objects.equals(config.getString(String.format("%s.reqMode", module)), "Cycle")) {
@@ -57,18 +54,20 @@ public class WorkerOptions {
                 }
                 String[] finalKeys = keys;
                 Runnable runnable = () -> asyncWorkers.asyncworker(module, reqTime, url, method, refInterval, finalKeys);
-                //newFixedThreadPool.execute(runnable);
                 Thread t = threadFactory.newThread(runnable);
                 t.setName(String.format("LHU-%s", module));
                 LingsHTTPUtils.getInstance().getLogger().info(String.format("尝试启动%s...", t.getName()));
                 t.start();
+                threads.add(t);
             }
         }
     }
 
     public static void stopWorkers() {
         LingsHTTPUtils.getInstance().getLogger().info("尝试关闭Cycle Worker...");
-        newFixedThreadPool.shutdownNow();
+        for(Thread t : threads){
+            t.stop();
+        }
         started = false;
     }
 }
