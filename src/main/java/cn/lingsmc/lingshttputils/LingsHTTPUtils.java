@@ -75,7 +75,6 @@ public final class LingsHTTPUtils extends JavaPlugin {
         // bStats支持
         int pluginId = 16397;
         Metrics metrics = new Metrics(this, pluginId);
-        getLogger().info("bStats已连接!");
         // 运行Cycle worker
         WorkerOptions.runWorkers();
     }
