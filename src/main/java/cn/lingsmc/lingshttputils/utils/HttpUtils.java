@@ -1,6 +1,6 @@
-package cn.lingsmc.lingshttputils.requesters;
+package cn.lingsmc.lingshttputils.utils;
 
-import cn.lingsmc.lingshttputils.LingsHTTPUtils;
+import cn.lingsmc.lingshttputils.LingsHttpUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
@@ -17,8 +17,8 @@ import java.util.Objects;
  * &#064;date 2022/8/30
  * @apiNote
  */
-public class HTTPRequester {
-    private HTTPRequester() {
+public class HttpUtils {
+    private HttpUtils() {
     }
 
     public static @Nullable String request(String httpUrl, int reqTime, String method) {
@@ -43,7 +43,7 @@ public class HTTPRequester {
                 }
             }
         } catch (IOException e) {
-            LingsHTTPUtils.getInstance().getLogger().info("请求失败!");
+            LingsHttpUtils.getInstance().getLogger().info("请求失败!");
             return null;
         } finally {
             if (br != null) {

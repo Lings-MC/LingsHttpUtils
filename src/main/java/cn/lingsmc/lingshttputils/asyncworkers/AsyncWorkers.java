@@ -1,7 +1,7 @@
 package cn.lingsmc.lingshttputils.asyncworkers;
 
-import cn.lingsmc.lingshttputils.LingsHTTPUtils;
-import cn.lingsmc.lingshttputils.requesters.HTTPRequester;
+import cn.lingsmc.lingshttputils.LingsHttpUtils;
+import cn.lingsmc.lingshttputils.utils.HttpUtils;
 import cn.lingsmc.lingshttputils.utils.JsonUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,23 +20,23 @@ public class AsyncWorkers {
         task = new BukkitRunnable() {
             @Override
             public void run() {
-                String res = HTTPRequester.request(url, reqTime, method);
+                String res = HttpUtils.request(url, reqTime, method);
                 if (res == null) {
                     return;
                 }
-                if ("json".equalsIgnoreCase(LingsHTTPUtils.config.getString(String.format("%s.mode", module)))) {
+                if ("json".equalsIgnoreCase(LingsHttpUtils.config.getString(String.format("%s.mode", module)))) {
                     res = JsonUtils.getValue(JsonUtils.parseStr(res), keys, 0);
                 }
-                LingsHTTPUtils.getInstance().getHttpData().put(module, res);
+                LingsHttpUtils.getInstance().getHttpData().put(module, res);
                 try {
                     Thread.sleep(refInterval);
                 } catch (InterruptedException e) {
-                    LingsHTTPUtils.getInstance().getLogger().info("出现错误!模块请求间隔必须为正值!");
+                    LingsHttpUtils.getInstance().getLogger().info("出现错误!模块请求间隔必须为正值!");
                     e.printStackTrace();
                 }
-                Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
+                Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHttpUtils.class), task);
             }
         };
-        Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHTTPUtils.class), task);
+        Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHttpUtils.class), task);
     }
 }

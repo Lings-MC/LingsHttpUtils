@@ -1,6 +1,6 @@
 package cn.lingsmc.lingshttputils.senders;
 
-import cn.lingsmc.lingshttputils.LingsHTTPUtils;
+import cn.lingsmc.lingshttputils.LingsHttpUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
  * @apiNote
  */
 public class MessageSender {
-    public static final String MESSAGE_HEAD = String.format("%s[%s%s%s] %s", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHTTPUtils.getInstance().getName(), ChatColor.DARK_AQUA, ChatColor.RESET);
+    public static final String MESSAGE_HEAD = String.format("%s[%s%s%s] %s", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHttpUtils.getInstance().getName(), ChatColor.DARK_AQUA, ChatColor.RESET);
 
     private MessageSender() {
     }

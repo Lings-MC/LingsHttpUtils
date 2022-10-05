@@ -28,10 +28,10 @@ import java.util.Objects;
  * &#064;date 2022/8/30
  * @apiNote
  */
-public final class LingsHTTPUtils extends JavaPlugin {
+public final class LingsHttpUtils extends JavaPlugin {
     public static FileConfiguration config;
     @Getter
-    private static LingsHTTPUtils instance;
+    private static LingsHttpUtils instance;
     @Getter
     private final Map<String, String> httpData = Maps.newConcurrentMap();
     @Getter
@@ -40,9 +40,9 @@ public final class LingsHTTPUtils extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
-        pluginName = "LingsHTTPUtils";
         saveDefaultConfig();
         config = getConfig();
+        pluginName = this.getDescription().getName();
     }
 
     @Override

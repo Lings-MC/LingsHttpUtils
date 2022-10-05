@@ -1,4 +1,4 @@
-name: LingsHTTPUtils
+name: LingsHttpUtils
 version: '${project.version}'
 main: cn.lingsmc.lingshttputils.LingsHTTPUtils
 depend: [ PlaceholderAPI ]
@@ -7,11 +7,11 @@ description: Connect website text with PAPI.
 
 commands:
   lingshttputils:
-    description: LingsHTTPUtils插件指令
+    description: LingsHttpUtils插件指令
     aliases:
       - lhu
     usage: |
       /lhu help
 permissions:
   lingshttputils.admin:
-    description: LingsHTTPUtils插件管理权限
+    description: LingsHttpUtils插件管理权限

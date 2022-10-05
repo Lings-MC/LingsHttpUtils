@@ -1,7 +1,7 @@
 package cn.lingsmc.lingshttputils.placeholderapi;
 
-import cn.lingsmc.lingshttputils.LingsHTTPUtils;
-import cn.lingsmc.lingshttputils.requesters.HTTPRequester;
+import cn.lingsmc.lingshttputils.LingsHttpUtils;
+import cn.lingsmc.lingshttputils.utils.HttpUtils;
 import cn.lingsmc.lingshttputils.utils.JsonUtils;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
@@ -18,10 +18,10 @@ import java.util.Set;
  */
 public class PlaceholderAPI extends PlaceholderExpansion {
 
-    private final LingsHTTPUtils plugin;
-    private final FileConfiguration config = LingsHTTPUtils.getInstance().getConfig();
+    private final LingsHttpUtils plugin;
+    private final FileConfiguration config = LingsHttpUtils.getInstance().getConfig();
 
-    public PlaceholderAPI(LingsHTTPUtils plugin) {
+    public PlaceholderAPI(LingsHttpUtils plugin) {
         this.plugin = plugin;
     }
 
@@ -62,7 +62,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
                     } catch (Exception ignored) {
                         method = "GET";
                     }
-                    String res = HTTPRequester.request(url, reqTime, method);
+                    String res = HttpUtils.request(url, reqTime, method);
                     if (res == null) {
                         return "";
                     }
