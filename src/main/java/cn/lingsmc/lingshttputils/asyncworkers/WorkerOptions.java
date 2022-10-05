@@ -1,6 +1,6 @@
 package cn.lingsmc.lingshttputils.asyncworkers;
 
-import cn.lingsmc.lingshttputils.LingsHTTPUtils;
+import cn.lingsmc.lingshttputils.LingsHttpUtils;
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -25,7 +25,7 @@ public class WorkerOptions {
 
     public static void runWorkers() {
         started = true;
-        FileConfiguration config = LingsHTTPUtils.config;
+        FileConfiguration config = LingsHttpUtils.config;
         Set<String> modules = config.getKeys(false);
         modules.remove("version");
         modules.removeIf(module -> !Objects.equals(config.getString(String.format("%s.reqMode", module)), "Cycle"));
@@ -54,13 +54,13 @@ public class WorkerOptions {
             }
             String[] finalKeys = keys;
             Runnable runnable = () -> asyncWorkers.asyncworker(module, reqTime, url, method, refInterval, finalKeys);
-            LingsHTTPUtils.getInstance().getLogger().log(Level.SEVERE, "尝试启动{0}...", module);
+            LingsHttpUtils.getInstance().getLogger().log(Level.SEVERE, "尝试启动{0}...", module);
             threadPool.execute(runnable);
         }
     }
 
     public static void stopWorkers() {
-        LingsHTTPUtils.getInstance().getLogger().info("尝试关闭Cycle Workers...");
+        LingsHttpUtils.getInstance().getLogger().info("尝试关闭Cycle Workers...");
         threadPool.shutdownNow();
         started = false;
     }

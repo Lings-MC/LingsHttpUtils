@@ -1,6 +1,6 @@
 package cn.lingsmc.lingshttputils.commands;
 
-import cn.lingsmc.lingshttputils.LingsHTTPUtils;
+import cn.lingsmc.lingshttputils.LingsHttpUtils;
 import cn.lingsmc.lingshttputils.asyncworkers.WorkerOptions;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -14,7 +14,7 @@ import java.io.File;
  * @apiNote
  */
 public class ReloadCommand {
-    static LingsHTTPUtils plugin = LingsHTTPUtils.getInstance();
+    static LingsHttpUtils plugin = LingsHttpUtils.getInstance();
 
     private ReloadCommand() {
     }
