@@ -48,9 +48,7 @@ public final class LingsHttpUtils extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        if (Objects.nonNull(Bukkit.getPluginManager().getPlugin("PlaceholderAPI"))) {
-            new PlaceholderAPI(this).register();
-        }
+        new PlaceholderAPI(this).register();
         final PluginCommand command = this.getCommand(instance.getName());
         command.setExecutor(new Commands());
         command.setTabCompleter(new TabComplete());
