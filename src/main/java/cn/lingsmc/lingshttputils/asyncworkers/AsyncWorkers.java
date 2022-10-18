@@ -4,8 +4,12 @@ import cn.lingsmc.lingshttputils.LingsHttpUtils;
 import cn.lingsmc.lingshttputils.utils.HttpUtils;
 import cn.lingsmc.lingshttputils.utils.JsonUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.Objects;
+import java.util.logging.Level;
 
 
 /**
@@ -14,6 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
  * @apiNote
  */
 public class AsyncWorkers {
+    static Plugin plugin = LingsHttpUtils.getInstance();
     Runnable task;
 
     public void asyncworker(String module, int reqTime, String url, String method, int refInterval, String[] keys) {
@@ -25,13 +30,16 @@ public class AsyncWorkers {
                     return;
                 }
                 if ("json".equalsIgnoreCase(LingsHttpUtils.config.getString(String.format("%s.mode", module)))) {
-                    res = JsonUtils.getValue(JsonUtils.parseStr(res), keys, 0);
+                    res = JsonUtils.getValue(res, keys);
+                    if (Objects.isNull(res)) {
+                        plugin.getLogger().log(Level.WARNING, "Worker: {0} 获取Json内容时出现错误! 请检查是否符合格式要求!", module);
+                    }
                 }
                 LingsHttpUtils.getInstance().getHttpData().put(module, res);
                 try {
                     Thread.sleep(refInterval);
                 } catch (InterruptedException e) {
-                    LingsHttpUtils.getInstance().getLogger().info("出现错误!模块请求间隔必须为正值!");
+                    plugin.getLogger().log(Level.WARNING, "Worker: {0} 出现错误!模块请求间隔必须为正值!", module);
                     e.printStackTrace();
                 }
                 Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHttpUtils.class), task);

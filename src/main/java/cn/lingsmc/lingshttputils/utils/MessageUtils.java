@@ -1,4 +1,4 @@
-package cn.lingsmc.lingshttputils.senders;
+package cn.lingsmc.lingshttputils.utils;
 
 import cn.lingsmc.lingshttputils.LingsHttpUtils;
 import org.bukkit.ChatColor;
@@ -11,10 +11,10 @@ import org.jetbrains.annotations.NotNull;
  * &#064;date 2022/8/30
  * @apiNote
  */
-public class MessageSender {
+public class MessageUtils {
     public static final String MESSAGE_HEAD = String.format("%s[%s%s%s] %s", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHttpUtils.getInstance().getName(), ChatColor.DARK_AQUA, ChatColor.RESET);
 
-    private MessageSender() {
+    private MessageUtils() {
     }
 
     public static void sendMessage(@NotNull Player p, String message) {

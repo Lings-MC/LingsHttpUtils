@@ -1,9 +1,13 @@
 package cn.lingsmc.lingshttputils.utils;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.jetbrains.annotations.Contract;
+import cn.lingsmc.lingshttputils.LingsHttpUtils;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.util.Objects;
 
 /**
  * @author Crsuh2er0
@@ -11,23 +15,32 @@ import org.jetbrains.annotations.NotNull;
  * @apiNote
  */
 public class JsonUtils {
+    static Plugin plugin = LingsHttpUtils.getInstance();
+
     private JsonUtils() {
     }
 
-    public static JsonObject parseStr(String str) {
-        return new JsonParser().parse(str).getAsJsonObject();
+    public static @Nullable JSONObject parseStr(String jsonString) {
+        JSONParser parser = new JSONParser();
+        try {
+            return (JSONObject) parser.parse(jsonString);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    /**
-     * 递归深度读取json值
-     */
-    @Contract(pure = true)
-    public static String getValue(JsonObject json, String @NotNull [] keys, int depth) {
-        if (depth == keys.length - 1) {
-            return json.get(keys[keys.length - 1]).getAsString();
+    public static @Nullable String getValue(String jsonString, String @NotNull [] keys) {
+        JSONObject json = parseStr(jsonString);
+        if (Objects.isNull(json)) {
+            return null;
         }
-        json = json.get(keys[depth]).getAsJsonObject();
-        int nextDepth = depth + 1;
-        return getValue(json, keys, nextDepth);
+        Object value = json.get(keys[0]);
+        for (int i = 1; i < keys.length; i++) {
+            if (value instanceof JSONObject) {
+                value = ((JSONObject) value).get(keys[i]);
+            }
+        }
+        return value.toString();
     }
 }

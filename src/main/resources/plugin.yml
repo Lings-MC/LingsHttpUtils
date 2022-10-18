@@ -1,9 +1,9 @@
 name: LingsHttpUtils
 version: '${project.version}'
-main: cn.lingsmc.lingshttputils.LingsHTTPUtils
+main: cn.lingsmc.lingshttputils.LingsHttpUtils
 depend: [ PlaceholderAPI ]
 authors: [ Crsuh2er0 ]
-description: Connect website text with PAPI.
+description: 从http接口获取数据到PAPI
 
 commands:
   lingshttputils:
@@ -15,3 +15,4 @@ commands:
 permissions:
   lingshttputils.admin:
     description: LingsHttpUtils插件管理权限
+    default: op

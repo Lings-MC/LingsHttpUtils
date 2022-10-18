@@ -48,9 +48,7 @@ public final class LingsHttpUtils extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        if (Objects.nonNull(Bukkit.getPluginManager().getPlugin("PlaceholderAPI"))) {
-            new PlaceholderAPI(this).register();
-        }
+        new PlaceholderAPI(this).register();
         final PluginCommand command = this.getCommand(instance.getName());
         command.setExecutor(new Commands());
         command.setTabCompleter(new TabComplete());
@@ -65,11 +63,11 @@ public final class LingsHttpUtils extends JavaPlugin {
                 fileConfig.set("Ignore", ignoreList);
                 try {
                     fileConfig.save(file);
+                    ConfigManager.i().reload();
+                    getLogger().info("检测到Yum，已自动修改Yum配置防刷屏!");
                 } catch (IOException e) {
                     getLogger().info("警告! Yum配置修改失败!");
                 }
-                ConfigManager.i().reload();
-                getLogger().info("检测到Yum，已自动修改Yum配置防刷屏!");
             }
         }
         // bStats支持

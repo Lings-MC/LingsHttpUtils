@@ -1,7 +1,7 @@
 package cn.lingsmc.lingshttputils.commands;
 
 import cn.lingsmc.lingshttputils.asyncworkers.WorkerOptions;
-import cn.lingsmc.lingshttputils.senders.MessageSender;
+import cn.lingsmc.lingshttputils.utils.MessageUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -30,17 +30,17 @@ public class WorkerOptionCommands {
             case "start":
                 if (!WorkerOptions.isStarted()) {
                     WorkerOptions.runWorkers();
-                    MessageSender.sendMessage(sender, String.format("%s正在启动Cycle Workers...", ChatColor.GREEN));
+                    MessageUtils.sendMessage(sender, String.format("%s正在启动Cycle Workers...", ChatColor.GREEN));
                 } else {
-                    MessageSender.sendMessage(sender, String.format("%sCycle Workers已启动!", ChatColor.RED));
+                    MessageUtils.sendMessage(sender, String.format("%sCycle Workers已启动!", ChatColor.RED));
                 }
                 return;
             case "stop":
                 if (WorkerOptions.isStarted()) {
                     WorkerOptions.stopWorkers();
-                    MessageSender.sendMessage(sender, String.format("%s正在关闭Cycle Workers...", ChatColor.GREEN));
+                    MessageUtils.sendMessage(sender, String.format("%s正在关闭Cycle Workers...", ChatColor.GREEN));
                 } else {
-                    MessageSender.sendMessage(sender, String.format("%sCycle Workers已关闭!", ChatColor.RED));
+                    MessageUtils.sendMessage(sender, String.format("%sCycle Workers已关闭!", ChatColor.RED));
                 }
                 return;
             default:
