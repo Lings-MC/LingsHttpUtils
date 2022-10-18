@@ -54,7 +54,7 @@ public class WorkerOptions {
             }
             String[] finalKeys = keys;
             Runnable runnable = () -> asyncWorkers.asyncworker(module, reqTime, url, method, refInterval, finalKeys);
-            LingsHttpUtils.getInstance().getLogger().log(Level.SEVERE, "尝试启动{0}...", module);
+            LingsHttpUtils.getInstance().getLogger().log(Level.INFO, "尝试启动{0}...", module);
             threadPool.execute(runnable);
         }
     }
