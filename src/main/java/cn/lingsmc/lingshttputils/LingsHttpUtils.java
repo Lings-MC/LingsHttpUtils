@@ -42,6 +42,8 @@ public final class LingsHttpUtils extends JavaPlugin {
     public void onLoad() {
         serverVersion = Bukkit.getVersion();
         getLogger().info(serverVersion);
+        serverVersion = Bukkit.getBukkitVersion();
+        getLogger().info(serverVersion);
         instance = this;
         saveDefaultConfig();
         config = getConfig();
