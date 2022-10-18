@@ -1,7 +1,8 @@
 package cn.lingsmc.lingshttputils.utils;
 
 import cn.lingsmc.lingshttputils.LingsHttpUtils;
-import org.bukkit.plugin.Plugin;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.simple.JSONObject;
@@ -15,12 +16,23 @@ import java.util.Objects;
  * @apiNote
  */
 public class JsonUtils {
-    static Plugin plugin = LingsHttpUtils.getInstance();
+    static LingsHttpUtils plugin = LingsHttpUtils.getInstance();
 
     private JsonUtils() {
     }
 
-    public static @Nullable JSONObject parseStr(String jsonString) {
+    public static String getValue(String jsonString, String @NotNull [] keys) {
+        if (plugin.gson) {
+            return getValueGson(jsonString, keys);
+        } else {
+            return getValueJsonSimple(jsonString, keys);
+        }
+    }
+
+    /**
+     * 使用com.googlecode.json-simple(1.13-)
+     */
+    public static @Nullable JSONObject parseStrJsonsimple(String jsonString) {
         JSONParser parser = new JSONParser();
         try {
             return (JSONObject) parser.parse(jsonString);
@@ -30,8 +42,11 @@ public class JsonUtils {
         }
     }
 
-    public static @Nullable String getValue(String jsonString, String @NotNull [] keys) {
-        JSONObject json = parseStr(jsonString);
+    /**
+     * 使用com.googlecode.json-simple(1.13-)
+     */
+    public static @Nullable String getValueJsonSimple(String jsonString, String @NotNull [] keys) {
+        JSONObject json = parseStrJsonsimple(jsonString);
         if (Objects.isNull(json)) {
             return null;
         }
@@ -40,6 +55,24 @@ public class JsonUtils {
             if (value instanceof JSONObject) {
                 value = ((JSONObject) value).get(keys[i]);
             }
+        }
+        return value.toString();
+    }
+
+    /**
+     * 使用Gson(1.14+)
+     */
+    public static JsonObject parseStrGson(String str) {
+        return new JsonParser().parse(str).getAsJsonObject();
+    }
+
+    /**
+     * 使用Gson(1.14+)
+     */
+    public static String getValueGson(String str, String @NotNull [] keys) {
+        JsonObject value = parseStrGson(str);
+        for (String key : keys) {
+            value = value.get(key).getAsJsonObject();
         }
         return value.toString();
     }
