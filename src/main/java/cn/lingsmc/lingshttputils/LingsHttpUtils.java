@@ -36,9 +36,12 @@ public final class LingsHttpUtils extends JavaPlugin {
     private final Map<String, String> httpData = Maps.newConcurrentMap();
     @Getter
     private String pluginName;
+    String serverVersion;
 
     @Override
     public void onLoad() {
+        serverVersion = Bukkit.getVersion();
+        getLogger().info(serverVersion);
         instance = this;
         saveDefaultConfig();
         config = getConfig();
