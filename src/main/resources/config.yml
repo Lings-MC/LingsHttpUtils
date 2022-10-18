@@ -6,38 +6,38 @@ version: 1.2.2
 # 每个模块名字随意
 # 样例
 bilibili_followers:
-# 是否已开启
+  # 是否已开启
   enabled: false
-#
-# mode
-# json 获取json格式的字符串并解析
-# string 直接获取文本
+  #
+  # mode
+  # json 获取json格式的字符串并解析
+  # string 直接获取文本
   mode: "json"
-#
-# key 当模式为json时要获取的值对应的键
-# 只在模式为json时可用
+  #
+  # key 当模式为json时要获取的值对应的键
+  # 只在模式为json时可用
   key: "data.follower"
-#
-# apiname 比如你想要PAPI变量名为 %lhu_ab_cd% 那么apiname为"ab_cd"
-# 此插件的变量名头为lhu
+  #
+  # apiname 比如你想要PAPI变量名为 %lhu_ab_cd% 那么apiname为"ab_cd"
+  # 此插件的变量名头为lhu
   apiname: "bilibili_followers"
-#
-# url 要请求的网页链接
+  #
+  # url 要请求的网页链接
   url: "https://api.bilibili.com/x/relation/stat?vmid=359206390"
-#
-# reqTime 请求超时时间(ms)
-# 仅当reqMode: Cycle时可用
+  #
+  # reqTime 请求超时时间(ms)
+  # 仅当reqMode: Cycle时可用
   reqTime: 10000
-#
-# refInterval 请求间隔时间
+  #
+  # refInterval 请求间隔时间
   refInterval: 30000
-#
-# method 请求方法 不指定则使用GET
+  #
+  # method 请求方法 不指定则使用GET
   method: "GET"
-#
-# reqMode 请求方式
-# Cycle 循环请求
-# inTime 即时请求(注意可能卡住服务器)
+  #
+  # reqMode 请求方式
+  # Cycle 循环请求
+  # inTime 即时请求(注意可能卡住服务器)
   reqMode: "Cycle"
 
 hitokoto:
