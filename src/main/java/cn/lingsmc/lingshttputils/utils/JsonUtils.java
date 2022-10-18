@@ -1,9 +1,8 @@
 package cn.lingsmc.lingshttputils.utils;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.json.simple.JSONObject;
 
 /**
  * @author Crsuh2er0
@@ -14,20 +13,12 @@ public class JsonUtils {
     private JsonUtils() {
     }
 
-    public static JsonObject parseStr(String str) {
-        return new JsonParser().parse(str).getAsJsonObject();
-    }
-
-    /**
-     * 递归深度读取json值
-     */
-    @Contract(pure = true)
-    public static String getValue(JsonObject json, String @NotNull [] keys, int depth) {
-        if (depth == keys.length - 1) {
-            return json.get(keys[keys.length - 1]).getAsString();
+    public static @Nullable String getValue(@NotNull JSONObject jsonObject, String key){
+        try{
+            return jsonObject.get(key).toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        json = json.get(keys[depth]).getAsJsonObject();
-        int nextDepth = depth + 1;
-        return getValue(json, keys, nextDepth);
     }
 }
