@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Level;
 
 /**
  * @author Crsuh2er0
@@ -68,7 +69,10 @@ public class PlaceholderAPI extends PlaceholderExpansion {
                     }
                     if ("json".equalsIgnoreCase(config.getString(String.format("%s.mode", module)))) {
                         String[] keys = config.getString(String.format("%s.key", module)).split("\\.");
-                        res = JsonUtils.getValue(JsonUtils.parseStr(res), keys, 0);
+                        res = JsonUtils.getValue(res, keys);
+                        if (Objects.isNull(res)) {
+                            plugin.getLogger().log(Level.WARNING, "Worker: {0} 获取Json内容时出现错误! 请检查是否符合格式要求!", module);
+                        }
                     }
                     return res;
                 } else {
