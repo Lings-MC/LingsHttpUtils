@@ -30,7 +30,7 @@ public class JsonUtils {
     }
 
     /**
-     * 使用com.googlecode.json-simple(1.13-)
+     * 使用json-simple(1.13-)
      */
     public static @Nullable JSONObject parseStrJsonsimple(String jsonString) {
         JSONParser parser = new JSONParser();
@@ -43,7 +43,7 @@ public class JsonUtils {
     }
 
     /**
-     * 使用com.googlecode.json-simple(1.13-)
+     * 使用json-simple(1.13-)
      */
     public static @Nullable String getValueJsonSimple(String jsonString, String @NotNull [] keys) {
         JSONObject json = parseStrJsonsimple(jsonString);
