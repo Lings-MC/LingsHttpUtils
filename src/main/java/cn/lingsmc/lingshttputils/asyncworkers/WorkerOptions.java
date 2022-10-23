@@ -65,9 +65,9 @@ public class WorkerOptions {
 
     public static void stopWorkers() {
         LingsHttpUtils.getInstance().getLogger().info("尝试关闭Cycle Workers...");
-        if(Objects.nonNull(threadPool)){
+        try{
             threadPool.shutdownNow();
-        }
+        } catch (Exception ignored){}
         started = false;
     }
 }
