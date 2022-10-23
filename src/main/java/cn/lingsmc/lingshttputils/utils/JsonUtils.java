@@ -71,9 +71,9 @@ public class JsonUtils {
      */
     public static String getValueGson(String str, String @NotNull [] keys) {
         JsonObject value = parseStrGson(str);
-        for (String key : keys) {
-            value = value.get(key).getAsJsonObject();
+        for (int i = 0;i < keys.length - 1;i++) {
+            value = value.get(keys[i]).getAsJsonObject();
         }
-        return value.toString();
+        return value.get(keys[keys.length - 1]).getAsString();
     }
 }
