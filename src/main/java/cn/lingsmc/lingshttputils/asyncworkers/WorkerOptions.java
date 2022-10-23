@@ -19,6 +19,8 @@ public class WorkerOptions {
     static boolean started = true;
     static ExecutorService threadPool;
 
+    static LingsHttpUtils plugin = LingsHttpUtils.getInstance();
+
 
     private WorkerOptions() {
     }
@@ -30,7 +32,7 @@ public class WorkerOptions {
         modules.remove("version");
         modules.removeIf(module -> !Objects.equals(config.getString(String.format("%s.reqMode", module)), "Cycle"));
         modules.removeIf(module -> Objects.equals(config.getBoolean(String.format("%s.enabled", module)), false));
-        if(modules.isEmpty()){
+        if (modules.isEmpty()) {
             return;
         }
 
@@ -64,10 +66,12 @@ public class WorkerOptions {
     }
 
     public static void stopWorkers() {
-        LingsHttpUtils.getInstance().getLogger().info("尝试关闭Cycle Workers...");
-        try{
+        plugin.getLogger().info("尝试关闭Cycle Workers...");
+        try {
             threadPool.shutdownNow();
-        } catch (Exception ignored){}
+        } catch (Exception ignored) {
+            plugin.getLogger().info("没有Cycle Workers被关闭，因为没有已启用的Cycle Workers");
+        }
         started = false;
     }
 }
