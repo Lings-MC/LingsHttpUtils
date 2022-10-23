@@ -52,7 +52,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
     public String onRequest(OfflinePlayer p, @NotNull String params) {
         Set<String> modules = config.getKeys(false);
         modules.removeIf(module -> Objects.equals(config.getBoolean(String.format("%s.enabled", module)), false));
-        if(modules.isEmpty()){
+        if (modules.isEmpty()) {
             return null;
         }
         for (String module : modules) {

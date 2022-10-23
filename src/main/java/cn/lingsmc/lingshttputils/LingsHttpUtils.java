@@ -28,17 +28,17 @@ import java.util.Objects;
  * &#064;date 2022/8/30
  * @apiNote
  */
-    // TODO 更新配置文件
-    // TODO 加一个配置文件更新器
-    // TODO 加一个request调试用指令
-    // TODO 支持xml
-    // TODO 支持user-agent
-    // TODO 支持cookie
-    // TODO 支持同时获取一组数据
-    // TODO 支持获取套娃
-    // TODO 使间隔适用于intime类
-    // TODO 支持脚本化操作
-    // TODO 支持模块分文件
+// TODO 更新配置文件
+// TODO 加一个配置文件更新器
+// TODO 加一个request调试用指令
+// TODO 支持xml
+// TODO 支持user-agent
+// TODO 支持cookie
+// TODO 支持同时获取一组数据
+// TODO 支持获取套娃
+// TODO 使间隔适用于intime类
+// TODO 支持脚本化操作
+// TODO 支持模块分文件
 
 public final class LingsHttpUtils extends JavaPlugin {
     public static FileConfiguration config;
