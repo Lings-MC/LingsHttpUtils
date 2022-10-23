@@ -24,12 +24,14 @@ public class ReloadCommand {
             sender.sendMessage(String.format("%s你没有执行此命令的权限.", ChatColor.RED));
             return;
         }
+        sender.sendMessage(String.format("%s正在重载中...", ChatColor.AQUA));
         WorkerOptions.stopWorkers();
         File file = new File(plugin.getDataFolder(), "config.yml");
         if (!file.exists()) {
             plugin.saveDefaultConfig();
         }
         plugin.reloadConfig();
+        LingsHttpUtils.config = plugin.getConfig();
         WorkerOptions.runWorkers();
     }
 }

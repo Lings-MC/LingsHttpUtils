@@ -41,6 +41,7 @@ import java.util.Objects;
 // TODO 支持模块分文件
 
 public final class LingsHttpUtils extends JavaPlugin {
+
     public static FileConfiguration config;
     @Getter
     private static LingsHttpUtils instance;
