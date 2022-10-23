@@ -42,7 +42,9 @@ public class AsyncWorkers {
                     plugin.getLogger().log(Level.WARNING, "Worker: {0} 出现错误!模块请求间隔必须为正值!", module);
                     e.printStackTrace();
                 }
-                Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHttpUtils.class), task);
+                try {
+                    Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHttpUtils.class), task);
+                } catch (Exception ignored) {}
             }
         };
         Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(LingsHttpUtils.class), task);
