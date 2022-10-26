@@ -27,7 +27,11 @@ public class Commands implements CommandExecutor {
         }
         switch (args[0]) {
             case "reload":
-                ReloadCommand.reloadCommand(sender);
+                try {
+                    ReloadCommand.reloadCommand(sender);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "help":
                 HelpCommand.helpCommand(sender);

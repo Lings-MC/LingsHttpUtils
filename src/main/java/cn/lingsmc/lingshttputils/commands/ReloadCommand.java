@@ -24,12 +24,13 @@ public class ReloadCommand {
     private ReloadCommand() {
     }
 
-    public static void reloadCommand(@NotNull CommandSender sender) {
+    public static void reloadCommand(@NotNull CommandSender sender) throws Exception {
         if (!sender.hasPermission(Commands.permission)) {
             sender.sendMessage(String.format("%s你没有执行此命令的权限.", ChatColor.RED));
             return;
         }
         sender.sendMessage(String.format("%s正在重载中...", ChatColor.AQUA));
+        plugin.reload();
         /*
         WorkerOptions.stopWorkers();
         File file = new File(plugin.getDataFolder(), "config.yml");
