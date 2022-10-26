@@ -2,11 +2,16 @@ package cn.lingsmc.lingshttputils.commands;
 
 import cn.lingsmc.lingshttputils.LingsHttpUtils;
 import cn.lingsmc.lingshttputils.asyncworkers.WorkerOptions;
+import com.ghostchu.simplereloadlib.ReloadResult;
+import com.ghostchu.simplereloadlib.Reloadable;
+import com.ghostchu.simplereloadlib.ReloadableContainer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.util.Map;
 
 /**
  * @author Crsuh2er0
@@ -25,6 +30,7 @@ public class ReloadCommand {
             return;
         }
         sender.sendMessage(String.format("%s正在重载中...", ChatColor.AQUA));
+        /*
         WorkerOptions.stopWorkers();
         File file = new File(plugin.getDataFolder(), "config.yml");
         if (!file.exists()) {
@@ -32,6 +38,6 @@ public class ReloadCommand {
         }
         plugin.reloadConfig();
         LingsHttpUtils.config = plugin.getConfig();
-        WorkerOptions.runWorkers();
+        WorkerOptions.runWorkers();*/
     }
 }

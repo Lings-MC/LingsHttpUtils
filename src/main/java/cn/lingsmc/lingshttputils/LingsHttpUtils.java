@@ -5,6 +5,7 @@ import cn.lingsmc.lingshttputils.asyncworkers.WorkerOptions;
 import cn.lingsmc.lingshttputils.commands.Commands;
 import cn.lingsmc.lingshttputils.commands.TabComplete;
 import cn.lingsmc.lingshttputils.placeholderapi.PlaceholderAPI;
+import com.ghostchu.simplereloadlib.*;
 import com.google.common.collect.Maps;
 import lombok.Getter;
 import org.bstats.bukkit.Metrics;
@@ -39,8 +40,9 @@ import java.util.Objects;
 // TODO 使间隔适用于intime类
 // TODO 支持脚本化操作
 // TODO 支持模块分文件
+// TODO 添加多语言支持
 
-public final class LingsHttpUtils extends JavaPlugin {
+public final class LingsHttpUtils extends JavaPlugin implements Reloadable {
 
     public static FileConfiguration config;
     @Getter
@@ -50,6 +52,8 @@ public final class LingsHttpUtils extends JavaPlugin {
     public boolean gson = false;
     @Getter
     private String pluginName;
+    @Getter
+    ReloadManager reloadManager;
 
     @Override
     public void onLoad() {
@@ -60,6 +64,8 @@ public final class LingsHttpUtils extends JavaPlugin {
         saveDefaultConfig();
         config = getConfig();
         pluginName = this.getDescription().getName();
+        reloadManager = new ReloadManager();
+        reloadManager.register(this);
     }
 
     @Override
@@ -100,5 +106,23 @@ public final class LingsHttpUtils extends JavaPlugin {
         if (WorkerOptions.isStarted()) {
             WorkerOptions.stopWorkers();
         }
+    }
+    public void reload() throws Exception {
+        Map<ReloadableContainer, ReloadResult> results = reloadManager.reload();
+        System.out.println(reloadModule().toString());
+    }
+    @Override
+    public ReloadResult reloadModule() throws Exception {
+        try{
+            // Reload code here
+            return ReloadResult.builder().status(ReloadStatus.SUCCESS).build();
+        } catch (IllegalStateException scheduleException) {
+            return ReloadResult.builder().status(ReloadStatus.SCHEDULED).reason("Resource in use").build();
+        } catch (RuntimeException requireRestartException) {
+            return ReloadResult.builder().status(ReloadStatus.REQUIRE_RESTART).reason("Restart required").build();
+        } catch (Exception otherException){
+            return ReloadResult.builder().status(ReloadStatus.EXCEPTION).exception(otherException).reason("Unkown error raised").build();
+        }
+        // If there have any Exception not be catched, Manager will catch it and report with ReloadStatus.EXCEPTION
     }
 }

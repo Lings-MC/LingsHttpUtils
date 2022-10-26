@@ -65,10 +65,6 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
@@ -111,6 +107,11 @@
             <version>LOCAL</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/Yum.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.ghostchu</groupId>
+            <artifactId>simplereloadlib</artifactId>
+            <version>1.1.2</version>
         </dependency>
     </dependencies>
 </project>
