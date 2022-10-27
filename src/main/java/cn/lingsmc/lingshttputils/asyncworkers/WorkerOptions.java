@@ -25,7 +25,7 @@ public class WorkerOptions {
     }
 
     public static void runWorkers() {
-        if(!started){
+        if (!started) {
             started = true;
             FileConfiguration config = LingsHttpUtils.config;
             Set<String> modules = config.getKeys(false);
@@ -60,7 +60,7 @@ public class WorkerOptions {
     }
 
     public static void stopWorkers() {
-        if (started){
+        if (started) {
             plugin.getLogger().info("尝试关闭Cycle Workers...");
             Bukkit.getScheduler().cancelTasks(plugin);
             started = false;

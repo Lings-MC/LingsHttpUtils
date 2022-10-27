@@ -19,10 +19,11 @@ import java.util.logging.Level;
  * @apiNote
  */
 public class HttpUtils {
+    static LingsHttpUtils plugin = LingsHttpUtils.getInstance();
+
     private HttpUtils() {
     }
 
-    static LingsHttpUtils plugin = LingsHttpUtils.getInstance();
     public static @Nullable String httpRequest(String httpUrl, int reqTime, String method) {
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -45,8 +46,8 @@ public class HttpUtils {
                 }
             }
         } catch (IOException e) {
-            plugin.getLogger().log(Level.SEVERE,"请求失败!");
-            plugin.getLogger().log(Level.SEVERE,e.toString());
+            plugin.getLogger().log(Level.SEVERE, "请求失败!");
+            plugin.getLogger().log(Level.SEVERE, e.toString());
             return null;
         } finally {
             if (br != null) {

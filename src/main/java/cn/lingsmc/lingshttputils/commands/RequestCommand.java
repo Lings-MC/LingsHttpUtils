@@ -17,29 +17,29 @@ import java.util.Set;
  * @since 2022/10/20
  */
 public class RequestCommand {
-    private RequestCommand() {
-    }
     private static final FileConfiguration CONFIG = LingsHttpUtils.getInstance().getConfig();
     static LingsHttpUtils plugin = LingsHttpUtils.getInstance();
+    private RequestCommand() {
+    }
 
-    public static void request(String module, @NotNull CommandSender sender){
+    public static void request(String module, @NotNull CommandSender sender) {
         if (!sender.hasPermission(Commands.permission)) {
             sender.sendMessage(String.format("%s你没有执行此命令的权限.", ChatColor.RED));
             return;
         }
         // 判断是否有此模块
         Set<String> modules = CONFIG.getKeys(false);
-        if (!modules.contains(module)){
-            MessageUtils.sendMessage(sender,String.format("%s错误:未找到此模块. 请检查拼写以及是否已重载配置文件.",ChatColor.RED));
+        if (!modules.contains(module)) {
+            MessageUtils.sendMessage(sender, String.format("%s错误:未找到此模块. 请检查拼写以及是否已重载配置文件.", ChatColor.RED));
             return;
         }
         // 不管是循环还是及时都直接请求一次
         String res = RequestUtils.request(module, CONFIG, plugin);
         // 判断结果是否为null或空值
-        if(Objects.isNull(res) || res.isEmpty()){
-            MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %snull", ChatColor.YELLOW,module,ChatColor.GREEN,ChatColor.GOLD));
+        if (Objects.isNull(res) || res.isEmpty()) {
+            MessageUtils.sendMessage(sender, String.format("%s%s %s获取到的结果为 %snull", ChatColor.YELLOW, module, ChatColor.GREEN, ChatColor.GOLD));
         } else {
-            MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %s%s",ChatColor.YELLOW,module,ChatColor.GREEN,ChatColor.GOLD,res));
+            MessageUtils.sendMessage(sender, String.format("%s%s %s获取到的结果为 %s%s", ChatColor.YELLOW, module, ChatColor.GREEN, ChatColor.GOLD, res));
         }
 
     }

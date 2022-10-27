@@ -14,7 +14,7 @@ import java.util.logging.Level;
  * @since 2022/10/27
  */
 public class RequestUtils {
-    private RequestUtils(){
+    private RequestUtils() {
     }
 
     public static @Nullable String request(String module, @NotNull FileConfiguration config, @NotNull LingsHttpUtils plugin) {
