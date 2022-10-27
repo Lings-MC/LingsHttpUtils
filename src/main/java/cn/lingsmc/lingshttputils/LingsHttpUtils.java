@@ -39,8 +39,10 @@ import java.util.Objects;
 // TODO 使间隔适用于intime类
 // TODO 支持脚本化操作
 // TODO 支持模块分文件
+// TODO 添加多语言支持
 
 public final class LingsHttpUtils extends JavaPlugin {
+
     public static FileConfiguration config;
     @Getter
     private static LingsHttpUtils instance;

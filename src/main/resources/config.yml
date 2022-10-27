@@ -29,7 +29,8 @@ bilibili_followers:
   # 仅当reqMode: Cycle时可用
   reqTime: 10000
   #
-  # refInterval 请求间隔时间
+  # refInterval 请求间隔时间(ms)
+  # 更新: 实际计算时以tick数为准 此处直接填毫秒
   refInterval: 30000
   #
   # method 请求方法 不指定则使用GET

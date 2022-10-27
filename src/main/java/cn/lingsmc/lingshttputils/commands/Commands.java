@@ -17,6 +17,9 @@ public class Commands implements CommandExecutor {
     static String rootMessage1 = String.format("%s此服务器正在运行 %s%s %s%s by %s", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHttpUtils.getInstance().getName(), LingsHttpUtils.getInstance().getDescription().getVersion(), ChatColor.DARK_AQUA, "§aC§br§cs§du§eh§a2§be§cr§d0");
     static String rootMessage2 = String.format("%s命令列表: %s/lhu help", ChatColor.DARK_AQUA, ChatColor.AQUA);
     static String permission = "lingshttputils.admin";
+    static String notEnoughArgs = String.format("%s参数错误! 正确用法:", ChatColor.RED);
+    static String requestMessage = String.format("%s/lhu request <module> %s请求配置文件中某模块的数据", ChatColor.AQUA, ChatColor.GREEN);
+    static String workersMessage = String.format("%s/lhu workers <start/stop> %s启动/关闭Cycle Workers", ChatColor.AQUA, ChatColor.GREEN);
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
@@ -27,13 +30,31 @@ public class Commands implements CommandExecutor {
         }
         switch (args[0]) {
             case "reload":
-                ReloadCommand.reloadCommand(sender);
+                try {
+                    ReloadCommand.reloadCommand(sender);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "help":
                 HelpCommand.helpCommand(sender);
                 break;
             case "workers":
-                WorkerOptionCommands.workerOptionCommands(sender, args);
+                // 检查参数是否充足
+                if (args.length < 2) {
+                    sender.sendMessage(notEnoughArgs);
+                    sender.sendMessage(workersMessage);
+                } else {
+                    WorkerOptionCommands.workerOptionCommands(sender, args);
+                }
+                break;
+            case "request":
+                if (args.length == 2) {
+                    RequestCommand.request(args[1], sender);
+                } else {
+                    sender.sendMessage(notEnoughArgs);
+                    sender.sendMessage(requestMessage);
+                }
                 break;
             default:
                 sender.sendMessage(helpMessage);

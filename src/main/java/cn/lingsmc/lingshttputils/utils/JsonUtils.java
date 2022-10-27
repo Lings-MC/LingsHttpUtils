@@ -21,12 +21,16 @@ public class JsonUtils {
     private JsonUtils() {
     }
 
-    public static String getValue(String jsonString, String @NotNull [] keys) {
-        if (plugin.gson) {
-            return getValueGson(jsonString, keys);
-        } else {
-            return getValueJsonSimple(jsonString, keys);
+    public static @Nullable String getValue(String jsonString, String @NotNull [] keys) {
+        try {
+            if (plugin.gson) {
+                return getValueGson(jsonString, keys);
+            } else {
+                return getValueJsonSimple(jsonString, keys);
+            }
+        } catch (Exception ignored) {
         }
+        return null;
     }
 
     /**

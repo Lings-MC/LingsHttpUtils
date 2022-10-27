@@ -16,6 +16,7 @@ public class HelpCommand {
     public static void helpCommand(@NotNull CommandSender sender) {
         sender.sendMessage(String.format("%s%s----- LingsHttpUtils指令 -----", ChatColor.DARK_AQUA, ChatColor.BOLD));
         sender.sendMessage(String.format("%s/lhu workers <start/stop> %s启动/关闭Cycle Workers", ChatColor.AQUA, ChatColor.GREEN));
+        sender.sendMessage(String.format("%s/lhu request <module> %s请求配置文件中某模块的数据", ChatColor.AQUA, ChatColor.GREEN));
         sender.sendMessage(String.format("%s/lhu reload %s重载插件", ChatColor.AQUA, ChatColor.GREEN));
     }
 }
