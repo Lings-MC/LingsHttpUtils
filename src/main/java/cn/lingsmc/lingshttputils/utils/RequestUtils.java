@@ -27,7 +27,7 @@ public class RequestUtils {
             method = "GET";
         }
         String res = HttpUtils.httpRequest(url, reqTime, method);
-        if (res == null) {
+        if (Objects.isNull(res)) {
             return "";
         }
         if ("json".equalsIgnoreCase(config.getString(String.format("%s.mode", module)))) {

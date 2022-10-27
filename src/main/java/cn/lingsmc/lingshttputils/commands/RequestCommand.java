@@ -35,7 +35,12 @@ public class RequestCommand {
         }
         // 不管是循环还是及时都直接请求一次
         String res = RequestUtils.request(module, CONFIG, plugin);
-        // 判断结果是否为null
-        MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %s%s",ChatColor.AQUA,module,ChatColor.GREEN,ChatColor.AQUA,Objects.isNull(res) ? "null" : res));
+        // 判断结果是否为null或空值
+        if(Objects.isNull(res) || res.isEmpty()){
+            MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %snull",ChatColor.AQUA,module,ChatColor.GREEN,ChatColor.AQUA));
+        } else {
+            MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %s%s",ChatColor.AQUA,module,ChatColor.GREEN,ChatColor.AQUA,res));
+        }
+
     }
 }
