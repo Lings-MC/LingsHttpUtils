@@ -42,6 +42,6 @@ public class AsyncWorkers {
                 } catch (Exception ignored) {
                 }
             }
-        }.runTaskTimerAsynchronously(plugin, 0, refInterval / 1000);
+        }.runTaskTimerAsynchronously(plugin, 0, (long) refInterval / 1000 * 20);
     }
 }
