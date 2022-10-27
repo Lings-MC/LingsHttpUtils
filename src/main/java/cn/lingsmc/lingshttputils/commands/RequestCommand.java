@@ -37,9 +37,9 @@ public class RequestCommand {
         String res = RequestUtils.request(module, CONFIG, plugin);
         // 判断结果是否为null或空值
         if(Objects.isNull(res) || res.isEmpty()){
-            MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %snull",ChatColor.BLUE,module,ChatColor.GREEN,ChatColor.YELLOW));
+            MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %snull", ChatColor.YELLOW,module,ChatColor.GREEN,ChatColor.GOLD));
         } else {
-            MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %s%s",ChatColor.BLUE,module,ChatColor.GREEN,ChatColor.YELLOW,res));
+            MessageUtils.sendMessage(sender,String.format("%s%s %s获取到的结果为 %s%s",ChatColor.YELLOW,module,ChatColor.GREEN,ChatColor.GOLD,res));
         }
 
     }

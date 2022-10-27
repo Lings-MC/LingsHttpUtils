@@ -26,7 +26,7 @@ public class AsyncWorkers {
         new BukkitRunnable() {
             @Override
             public void run() {
-                plugin.getLogger().info(String.format("%s进行了一次请求!",module));
+                // plugin.getLogger().info(String.format("%s进行了一次请求!",module));
                 String res = HttpUtils.httpRequest(url, reqTime, method);
                 if (Objects.isNull(res)) {
                     return;
