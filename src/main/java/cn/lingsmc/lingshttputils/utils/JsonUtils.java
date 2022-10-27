@@ -22,13 +22,14 @@ public class JsonUtils {
     }
 
     public static @Nullable String getValue(String jsonString, String @NotNull [] keys) {
-        try{
+        try {
             if (plugin.gson) {
                 return getValueGson(jsonString, keys);
             } else {
                 return getValueJsonSimple(jsonString, keys);
             }
-        } catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
         return null;
     }
 
@@ -73,10 +74,10 @@ public class JsonUtils {
      * 使用Gson(1.14+)
      */
     public static String getValueGson(String str, String @NotNull [] keys) {
-            JsonObject value = parseStrGson(str);
-            for (int i = 0; i < keys.length - 1; i++) {
-                value = value.get(keys[i]).getAsJsonObject();
-            }
-            return value.get(keys[keys.length - 1]).getAsString();
+        JsonObject value = parseStrGson(str);
+        for (int i = 0; i < keys.length - 1; i++) {
+            value = value.get(keys[i]).getAsJsonObject();
+        }
+        return value.get(keys[keys.length - 1]).getAsString();
     }
 }
