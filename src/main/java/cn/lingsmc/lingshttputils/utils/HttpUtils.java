@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import java.util.logging.Level;
 
 /**
  * @author Crsuh2er0
@@ -21,6 +22,7 @@ public class HttpUtils {
     private HttpUtils() {
     }
 
+    static LingsHttpUtils plugin = LingsHttpUtils.getInstance();
     public static @Nullable String httpRequest(String httpUrl, int reqTime, String method) {
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -43,8 +45,8 @@ public class HttpUtils {
                 }
             }
         } catch (IOException e) {
-            LingsHttpUtils.getInstance().getLogger().info("请求失败!");
-            e.printStackTrace();
+            plugin.getLogger().log(Level.SEVERE,"请求失败!");
+            plugin.getLogger().log(Level.SEVERE,e.getMessage());
             return null;
         } finally {
             if (br != null) {
