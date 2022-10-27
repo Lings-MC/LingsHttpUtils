@@ -44,6 +44,7 @@ public class HttpUtils {
             }
         } catch (IOException e) {
             LingsHttpUtils.getInstance().getLogger().info("请求失败!");
+            e.printStackTrace();
             return null;
         } finally {
             if (br != null) {
