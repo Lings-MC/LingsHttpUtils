@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
-import java.util.Set;
 import java.util.logging.Level;
 
 /**
@@ -19,7 +18,7 @@ public class RequestUtils {
     }
 
     public static @Nullable String request(String module, @NotNull FileConfiguration config, @NotNull LingsHttpUtils plugin) {
-        plugin.getLogger().log(Level.INFO,"{0}进行了一次请求.",module);
+        System.out.printf("%s进行了一次请求.%n",module);
         int reqTime = config.getInt(String.format("%s.reqTime", module));
         String url = config.getString(String.format("%s.url", module));
         String method;
