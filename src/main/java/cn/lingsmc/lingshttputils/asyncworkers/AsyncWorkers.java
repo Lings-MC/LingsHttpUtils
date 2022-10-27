@@ -26,8 +26,9 @@ public class AsyncWorkers {
         new BukkitRunnable() {
             @Override
             public void run() {
+                plugin.getLogger().info(String.format("%s进行了一次请求!",module));
                 String res = HttpUtils.httpRequest(url, reqTime, method);
-                if (res == null) {
+                if (Objects.isNull(res)) {
                     return;
                 }
                 if ("json".equalsIgnoreCase(LingsHttpUtils.config.getString(String.format("%s.mode", module)))) {
@@ -36,7 +37,10 @@ public class AsyncWorkers {
                         plugin.getLogger().log(Level.SEVERE, "Worker: {0} 获取Json内容时出现错误! 请检查是否符合格式要求!", module);
                     }
                 }
-                LingsHttpUtils.getInstance().getHttpData().put(module, res);
+                try {
+                    LingsHttpUtils.getInstance().getHttpData().put(module, res);
+                } catch (Exception ignored) {
+                }
             }
         }.runTaskTimerAsynchronously(plugin, 0, refInterval / 1000);
     }
