@@ -21,7 +21,7 @@ public class HttpUtils {
     private HttpUtils() {
     }
 
-    public static @Nullable String request(String httpUrl, int reqTime, String method) {
+    public static @Nullable String httpRequest(String httpUrl, int reqTime, String method) {
         HttpURLConnection connection = null;
         InputStream is = null;
         BufferedReader br = null;

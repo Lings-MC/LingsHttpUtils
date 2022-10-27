@@ -4,7 +4,6 @@ import cn.lingsmc.lingshttputils.LingsHttpUtils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 import java.util.Set;
@@ -63,7 +62,7 @@ public class WorkerOptions {
     public static void stopWorkers() {
         if (started){
             plugin.getLogger().info("尝试关闭Cycle Workers...");
-            Bukkit.getScheduler().cancelTasks(JavaPlugin.getPlugin(LingsHttpUtils.class));
+            Bukkit.getScheduler().cancelTasks(plugin);
             started = false;
         }
     }

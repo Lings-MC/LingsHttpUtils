@@ -26,7 +26,7 @@ public class AsyncWorkers {
         new BukkitRunnable() {
             @Override
             public void run() {
-                String res = HttpUtils.request(url, reqTime, method);
+                String res = HttpUtils.httpRequest(url, reqTime, method);
                 if (res == null) {
                     return;
                 }

@@ -1,8 +1,6 @@
 package cn.lingsmc.lingshttputils.placeholderapi;
 
 import cn.lingsmc.lingshttputils.LingsHttpUtils;
-import cn.lingsmc.lingshttputils.utils.HttpUtils;
-import cn.lingsmc.lingshttputils.utils.JsonUtils;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -10,7 +8,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.Set;
-import java.util.logging.Level;
+
+import static cn.lingsmc.lingshttputils.utils.RequestUtils.request;
 
 /**
  * @author Crsuh2er0
@@ -59,26 +58,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             if (Objects.equals(params, config.getString(String.format("%s.apiname", module)))) {
                 if ("inTime".equalsIgnoreCase(config.getString(String.format("%s.reqMode", module)))) {
                     // inTime
-                    int reqTime = config.getInt(String.format("%s.reqTime", module));
-                    String url = config.getString(String.format("%s.url", module));
-                    String method;
-                    try {
-                        method = config.getString(String.format("%s.method", module));
-                    } catch (Exception ignored) {
-                        method = "GET";
-                    }
-                    String res = HttpUtils.request(url, reqTime, method);
-                    if (res == null) {
-                        return "";
-                    }
-                    if ("json".equalsIgnoreCase(config.getString(String.format("%s.mode", module)))) {
-                        String[] keys = config.getString(String.format("%s.key", module)).split("\\.");
-                        res = JsonUtils.getValue(res, keys);
-                        if (Objects.isNull(res)) {
-                            plugin.getLogger().log(Level.WARNING, "Worker: {0} 获取Json内容时出现错误! 请检查是否符合格式要求!", module);
-                        }
-                    }
-                    return res;
+                    return request(module, config, plugin);
                 } else {
                     // Cycle
                     return this.plugin.getHttpData().get(module);

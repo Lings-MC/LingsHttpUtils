@@ -39,6 +39,9 @@ public class Commands implements CommandExecutor {
             case "workers":
                 WorkerOptionCommands.workerOptionCommands(sender, args);
                 break;
+            case "request":
+                RequestCommand.request(args[1],sender);
+                break;
             default:
                 sender.sendMessage(helpMessage);
                 break;
