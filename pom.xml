@@ -6,7 +6,7 @@
 
     <groupId>cn.lingsmc</groupId>
     <artifactId>LingsHTTPUtils</artifactId>
-    <version>1.2.4</version>
+    <version>1.2.5</version>
     <packaging>jar</packaging>
 
     <name>LingsHTTPUtils</name>
@@ -107,11 +107,6 @@
             <version>LOCAL</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/Yum.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.ghostchu</groupId>
-            <artifactId>simplereloadlib</artifactId>
-            <version>1.1.2</version>
         </dependency>
     </dependencies>
 </project>
