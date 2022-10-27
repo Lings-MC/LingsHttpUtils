@@ -38,6 +38,6 @@ public class AsyncWorkers {
                 }
                 LingsHttpUtils.getInstance().getHttpData().put(module, res);
             }
-        }.runTaskTimerAsynchronously(plugin, 0, refInterval);
+        }.runTaskTimerAsynchronously(plugin, 0, refInterval / 1000);
     }
 }
