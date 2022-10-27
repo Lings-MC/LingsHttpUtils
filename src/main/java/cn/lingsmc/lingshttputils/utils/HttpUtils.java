@@ -47,7 +47,7 @@ public class HttpUtils {
         } catch (IOException e) {
             plugin.getLogger().log(Level.SEVERE,"请求失败!");
             plugin.getLogger().log(Level.SEVERE,e.getMessage());
-            plugin.getLogger().log(Level.SEVERE,e.getCause().getMessage());
+            // plugin.getLogger().log(Level.SEVERE,e.getCause().getMessage());
             plugin.getLogger().log(Level.SEVERE,e.toString());
             plugin.getLogger().log(Level.SEVERE,e.getCause().toString());
             return null;
