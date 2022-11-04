@@ -34,34 +34,38 @@ public class HttpUtils {
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(method);
             connection.setReadTimeout(reqTime);
+            connection.setRequestProperty("accept", "*/*");
+            connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             connection.connect();
-            if (connection.getResponseCode() == 200) {
+            if (Objects.equals(connection.getResponseCode(),200)) {
                 is = connection.getInputStream();
-                if (is != null) {
+                if (Objects.nonNull(is)) {
                     br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                     String tmp;
-                    while ((tmp = br.readLine()) != null) {
+                    while (Objects.nonNull((tmp = br.readLine()))) {
                         res.append(tmp);
                     }
                 }
             }
         } catch (IOException e) {
-            plugin.getLogger().log(Level.SEVERE, "请求失败!");
+            plugin.getLogger().log(Level.SEVERE, "Http请求出错!");
             plugin.getLogger().log(Level.SEVERE, e.toString());
             return null;
         } finally {
-            if (br != null) {
+            if (Objects.nonNull(br)) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    plugin.getLogger().log(Level.SEVERE, "IO异常!");
+                    plugin.getLogger().log(Level.SEVERE, e.toString());
                 }
             }
-            if (is != null) {
+            if (Objects.nonNull(is)) {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    plugin.getLogger().log(Level.SEVERE, "IO异常!");
+                    plugin.getLogger().log(Level.SEVERE, e.toString());
                 }
             }
             Objects.requireNonNull(connection).disconnect();

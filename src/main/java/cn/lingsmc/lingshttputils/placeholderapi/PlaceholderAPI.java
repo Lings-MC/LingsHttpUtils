@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
-import static cn.lingsmc.lingshttputils.utils.RequestUtils.request;
+import static cn.lingsmc.lingshttputils.utils.RequestUtils.requestHttp;
 
 /**
  * @author Crsuh2er0
@@ -58,7 +58,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             if (Objects.equals(params, config.getString(String.format("%s.apiname", module)))) {
                 if ("inTime".equalsIgnoreCase(config.getString(String.format("%s.reqMode", module)))) {
                     // inTime
-                    return request(module, config, plugin);
+                    return requestHttp(module, config, plugin);
                 } else {
                     // Cycle
                     return this.plugin.getHttpData().get(module);
