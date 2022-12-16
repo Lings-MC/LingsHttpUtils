@@ -19,6 +19,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'zulu'
+      - name: 'Qodana Scan'
+        uses: JetBrains/qodana-action@main
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
