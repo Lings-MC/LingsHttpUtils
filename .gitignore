@@ -112,5 +112,3 @@ buildNumber.properties
 # Common working directory
 run/
 
-# GitHub
-.github/workflows/builder.yml
