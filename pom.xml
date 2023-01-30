@@ -19,7 +19,7 @@
 
     <licenses>
         <license>
-            <name>MIT license</name>
+            <name>MulanPSL2</name>
             <url>https://github.com/Lings-MC/LingsHttpUtils/blob/main/LICENSE</url>
             <distribution>repo</distribution>
         </license>
