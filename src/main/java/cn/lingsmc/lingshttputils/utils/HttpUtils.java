@@ -37,7 +37,7 @@ public class HttpUtils {
             connection.setRequestProperty("accept", "*/*");
             connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             connection.connect();
-            if (Objects.equals(connection.getResponseCode(),200)) {
+            if (Objects.equals(connection.getResponseCode(), 200)) {
                 is = connection.getInputStream();
                 if (Objects.nonNull(is)) {
                     br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));

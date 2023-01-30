@@ -37,14 +37,13 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return this.plugin.getDescription().getVersion();
+        return plugin.getDescription().getVersion();
     }
 
     @Override
     public boolean persist() {
         // 这是必要的，否则PAPI会在重载时卸载这个扩展
         return true;
-
     }
 
     @Override
