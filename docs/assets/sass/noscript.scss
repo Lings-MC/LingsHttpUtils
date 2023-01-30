@@ -13,20 +13,20 @@
 
 /* Header */
 
-	#header {
-		body.is-preload & {
-			.content {
-				@include vendor('transform', 'none');
-				opacity: 1;
-			}
+#header {
+  body.is-preload & {
+    .content {
+      @include vendor('transform', 'none');
+      opacity: 1;
+    }
 
-			.image {
-				@include vendor('transform', 'none');
-				opacity: 1;
+    .image {
+      @include vendor('transform', 'none');
+      opacity: 1;
 
-				img {
-					opacity: 1;
-				}
-			}
-		}
-	}
+      img {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -14,51 +14,51 @@
 
 // Breakpoints.
 
-	@include breakpoints((
-		xlarge:   ( 1281px,  1680px ),
-		large:    ( 981px,   1280px ),
-		medium:   ( 737px,   980px  ),
-		small:    ( 481px,   736px  ),
-		xsmall:   ( 361px,   480px  ),
-		xxsmall:  ( null,    360px  )
-	));
+@include breakpoints((
+        xlarge: (1281px, 1680px),
+        large: (981px, 1280px),
+        medium: (737px, 980px),
+        small: (481px, 736px),
+        xsmall: (361px, 480px),
+        xxsmall: (null, 360px)
+));
 
 // Mixins.
 
-	@mixin color($p: null) {
-		@include color-button($p);
-		@include color-form($p);
-		@include color-icon($p);
-		@include color-image($p);
-		@include color-list($p);
-		@include color-table($p);
-		@include color-typography($p);
-	}
+@mixin color($p: null) {
+  @include color-button($p);
+  @include color-form($p);
+  @include color-icon($p);
+  @include color-image($p);
+  @include color-list($p);
+  @include color-table($p);
+  @include color-typography($p);
+}
 
 // Base.
 
-	@import 'base/reset';
-	@import 'base/page';
-	@import 'base/typography';
+@import 'base/reset';
+@import 'base/page';
+@import 'base/typography';
 
 // Component.
 
-	@import 'components/row';
-	@import 'components/box';
-	@import 'components/button';
-	@import 'components/form';
-	@import 'components/icon';
-	@import 'components/image';
-	@import 'components/list';
-	@import 'components/actions';
-	@import 'components/icons';
-	@import 'components/section';
-	@import 'components/spotlight';
-	@import 'components/table';
-	@import 'components/wrapper';
+@import 'components/row';
+@import 'components/box';
+@import 'components/button';
+@import 'components/form';
+@import 'components/icon';
+@import 'components/image';
+@import 'components/list';
+@import 'components/actions';
+@import 'components/icons';
+@import 'components/section';
+@import 'components/spotlight';
+@import 'components/table';
+@import 'components/wrapper';
 
 // Layout.
 
-	@import 'layout/header';
-	@import 'layout/main';
-	@import 'layout/footer';
+@import 'layout/header';
+@import 'layout/main';
+@import 'layout/footer';

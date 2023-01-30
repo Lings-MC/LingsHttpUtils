@@ -6,76 +6,76 @@
 
 /* Spotlight */
 
-	.spotlight {
-		@include vendor('display', 'flex');
-		@include vendor('align-items', 'center');
-		margin: 0 0 _size(element-margin) 0;
+.spotlight {
+  @include vendor('display', 'flex');
+  @include vendor('align-items', 'center');
+  margin: 0 0 _size(element-margin) 0;
 
-		.image {
-			width: 30%;
-			border-radius: 100%;
-			margin: 0 (_size(element-margin) * 1.5) 0 0;
-			display: block;
+  .image {
+    width: 30%;
+    border-radius: 100%;
+    margin: 0 (_size(element-margin) * 1.5) 0 0;
+    display: block;
 
-			img {
-				display: block;
-				border-radius: 100%;
-				width: 100%;
-			}
-		}
+    img {
+      display: block;
+      border-radius: 100%;
+      width: 100%;
+    }
+  }
 
-		.content {
-			width: 70%;
+  .content {
+    width: 70%;
 
-			> :last-child {
-				margin-bottom: 0;
-			}
-		}
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
 
-		&:nth-child(2n) {
-			@include vendor('flex-direction', 'row-reverse');
+  &:nth-child(2n) {
+    @include vendor('flex-direction', 'row-reverse');
 
-			.image {
-				margin: 0 0 0 (_size(element-margin) * 1.5);
-			}
+    .image {
+      margin: 0 0 0 (_size(element-margin) * 1.5);
+    }
 
-			.content {
-				text-align: right;
-			}
-		}
+    .content {
+      text-align: right;
+    }
+  }
 
-		// Small.
-			@include breakpoint('<=small') {
+  // Small.
+  @include breakpoint('<=small') {
 
-				// Landscape.
-					@include orientation(landscape) {
-						.image {
-							margin: 0 _size(element-margin) 0 0;
-						}
+    // Landscape.
+    @include orientation(landscape) {
+      .image {
+        margin: 0 _size(element-margin) 0 0;
+      }
 
-						&:nth-child(2n) {
-							.image {
-								margin: 0 0 0 _size(element-margin);
-							}
-						}
-					}
+      &:nth-child(2n) {
+        .image {
+          margin: 0 0 0 _size(element-margin);
+        }
+      }
+    }
 
-				// Portrait.
-					@include orientation(portrait) {
-						@include vendor('flex-direction', 'column !important');
+    // Portrait.
+    @include orientation(portrait) {
+      @include vendor('flex-direction', 'column !important');
 
-						.image {
-							width: 100%;
-							max-width: 60%;
-							margin: 0 0 _size(element-margin) 0 !important;
-						}
+      .image {
+        width: 100%;
+        max-width: 60%;
+        margin: 0 0 _size(element-margin) 0 !important;
+      }
 
-						.content {
-							width: 100%;
-							text-align: center !important;
-						}
-					}
+      .content {
+        width: 100%;
+        text-align: center !important;
+      }
+    }
 
-			}
+  }
 
-	}
+}

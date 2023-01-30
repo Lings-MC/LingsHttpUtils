@@ -223,133 +223,135 @@
 
 </body>
 <style>
-	.clickable-img {
-		cursor: pointer;
-	}
+    .clickable-img {
+        cursor: pointer;
+    }
 
 
 </style>
 <script>
 
-	let versionInfo = null;
-	const mcVersions = [];
-	let availableModAssets = [];
-	let searchParams = new URLSearchParams(window.location.search);
+    let versionInfo = null;
+    const mcVersions = [];
+    let availableModAssets = [];
+    let searchParams = new URLSearchParams(window.location.search);
 
-	//$("#download-loading").hide();
-	$("#download-list").hide();
-	$("#download-not-found").hide();
+    //$("#download-loading").hide();
+    $("#download-list").hide();
+    $("#download-not-found").hide();
 
-	$.getJSON('https://api.github.com/repos/RedLime/SpeedRunIGT/releases', (data, status, xhr) => {
-		$("#download-loading").hide();
-		if (status && status === 'success') {
-			versionInfo = data.filter(version => !version.prerelease);
+    $.getJSON('https://api.github.com/repos/RedLime/SpeedRunIGT/releases', (data, status, xhr) => {
+        $("#download-loading").hide();
+        if (status && status === 'success') {
+            versionInfo = data.filter(version => !version.prerelease);
 
-			versionInfo.forEach(element => {
-				element.assets.forEach(asset => {
-					const versionName = asset.name.split('+')[1].replace('.jar', '');
-					if (!mcVersions.includes(versionName)) mcVersions.push(versionName);
-				});
-			});
+            versionInfo.forEach(element => {
+                element.assets.forEach(asset => {
+                    const versionName = asset.name.split('+')[1].replace('.jar', '');
+                    if (!mcVersions.includes(versionName)) mcVersions.push(versionName);
+                });
+            });
 
-			mcVersions.sort((a, b) => {
-				return (b == '1.16.1') - (a == '1.16.1') || (b == '1.16.5') - (a == '1.16.5') || (b == '1.17.1') - (a == '1.17.1') || a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
-			}).forEach(element => {
-				const option = $(`<option value='${element}'>${element}</option>`);
-				$('#download-version-mc').append(option);
-			});
+            mcVersions.sort((a, b) => {
+                return (b == '1.16.1') - (a == '1.16.1') || (b == '1.16.5') - (a == '1.16.5') || (b == '1.17.1') - (a == '1.17.1') || a.localeCompare(b, undefined, {
+                    numeric: true,
+                    sensitivity: 'base'
+                });
+            }).forEach(element => {
+                const option = $(`<option value='${element}'>${element}</option>`);
+                $('#download-version-mc').append(option);
+            });
 
-			$("#download-list").show();
-			if (searchParams.has('mcversion') && mcVersions.includes(searchParams.get('mcversion'))) {
-				let param = searchParams.get('mcversion');
-				$('#download-version-mc').val(param).change();
-				$('html,body').animate({ scrollTop: $('#one').offset().top });
-			}
-			refreshModVersions();
-		} else {
-			$("#download-not-found").show();
-		}
-	}).catch(e => {
-		$("#download-loading").hide();
-		$("#download-not-found").show();
-	});
+            $("#download-list").show();
+            if (searchParams.has('mcversion') && mcVersions.includes(searchParams.get('mcversion'))) {
+                let param = searchParams.get('mcversion');
+                $('#download-version-mc').val(param).change();
+                $('html,body').animate({scrollTop: $('#one').offset().top});
+            }
+            refreshModVersions();
+        } else {
+            $("#download-not-found").show();
+        }
+    }).catch(e => {
+        $("#download-loading").hide();
+        $("#download-not-found").show();
+    });
 
-	$('#download-version-mc').on('change', function () {
-		refreshModVersions();
-	});
+    $('#download-version-mc').on('change', function () {
+        refreshModVersions();
+    });
 
-	$('#download-version-mod').on('change', function () {
-		$('#download-count').text("");
-		const selectVal = $("#download-version-mod option:selected").val();
-		availableModAssets.forEach(asset => {
-			if (asset.browser_download_url == selectVal) {
-				$('#download-button').text(`Downloads (${asset.download_count})`);
-			}
-		});
-	});
+    $('#download-version-mod').on('change', function () {
+        $('#download-count').text("");
+        const selectVal = $("#download-version-mod option:selected").val();
+        availableModAssets.forEach(asset => {
+            if (asset.browser_download_url == selectVal) {
+                $('#download-button').text(`Downloads (${asset.download_count})`);
+            }
+        });
+    });
 
-	const refreshModVersions = () => {
-		availableModAssets = [];
-		const selectVal = $("#download-version-mc option:selected").val();
-		versionInfo.forEach(version => {
-			if (!version.prerelease) {
-				for (const asset of version.assets) {
-					if (asset.name.split('+')[1].replace('.jar', '') == selectVal) availableModAssets.push(asset);
-				}
-			}
-		});
+    const refreshModVersions = () => {
+        availableModAssets = [];
+        const selectVal = $("#download-version-mc option:selected").val();
+        versionInfo.forEach(version => {
+            if (!version.prerelease) {
+                for (const asset of version.assets) {
+                    if (asset.name.split('+')[1].replace('.jar', '') == selectVal) availableModAssets.push(asset);
+                }
+            }
+        });
 
-		$('#download-version-mod').html("");
-		if (availableModAssets.length) {
-			availableModAssets.sort((a, b) => {
-				const aVersion = a.name.split('+')[0].split('-')[1];
-				const bVersion = b.name.split('+')[0].split('-')[1];
-				return bVersion.localeCompare(aVersion, undefined, { numeric: true, sensitivity: 'base' })
-			}).forEach(asset => {
-				const option = $(`<option value='${asset.browser_download_url}'>${asset.name.split('+')[0].split('-')[1]}</option>`);
-				$('#download-version-mod').append(option);
-				$('#download-version-mod').change();
-			});
-			$('#download-button').removeClass('disabled');
-		} else {
-			$('#download-button').addClass('disabled');
-		}
-	}
+        $('#download-version-mod').html("");
+        if (availableModAssets.length) {
+            availableModAssets.sort((a, b) => {
+                const aVersion = a.name.split('+')[0].split('-')[1];
+                const bVersion = b.name.split('+')[0].split('-')[1];
+                return bVersion.localeCompare(aVersion, undefined, {numeric: true, sensitivity: 'base'})
+            }).forEach(asset => {
+                const option = $(`<option value='${asset.browser_download_url}'>${asset.name.split('+')[0].split('-')[1]}</option>`);
+                $('#download-version-mod').append(option);
+                $('#download-version-mod').change();
+            });
+            $('#download-button').removeClass('disabled');
+        } else {
+            $('#download-button').addClass('disabled');
+        }
+    }
 
-	const downloadMod = () => {
-		const selectVal = $("#download-version-mod option:selected").val();
-		if (selectVal) window.open(selectVal, '_blank');
-	}
+    const downloadMod = () => {
+        const selectVal = $("#download-version-mod option:selected").val();
+        if (selectVal) window.open(selectVal, '_blank');
+    }
 
-	const showChangeLog = () => {
-		const selectVal = $("#download-version-mod option:selected").val();
+    const showChangeLog = () => {
+        const selectVal = $("#download-version-mod option:selected").val();
 
-		const version = versionInfo.find(version => {
-			if (version.prerelease) return false;
-			for (const asset of version.assets) {
-				if (asset.browser_download_url == selectVal) return true;
-			}
-			return false;
-		});
+        const version = versionInfo.find(version => {
+            if (version.prerelease) return false;
+            for (const asset of version.assets) {
+                if (asset.browser_download_url == selectVal) return true;
+            }
+            return false;
+        });
 
-		const log = version.body.split('\n').filter(line => !line.startsWith('### ')).join('\n');
-		const converter = new showdown.Converter().makeHtml(log);
+        const log = version.body.split('\n').filter(line => !line.startsWith('### ')).join('\n');
+        const converter = new showdown.Converter().makeHtml(log);
 
-		Swal.fire({
-			title: version.tag_name + " (" + version.name.split(' -')[0] + ")",
-			html: converter
-		});
-	}
+        Swal.fire({
+            title: version.tag_name + " (" + version.name.split(' -')[0] + ")",
+            html: converter
+        });
+    }
 
-	$('.clickable-img').click((e) => {
-		Swal.fire({
-			imageUrl: $(e.target).attr("src"),
-			imageAlt: 'image',
-			width: window.innerWidth * 0.7,
-			imageWidth: window.innerWidth * 0.65
-		});
-	})
-
+    $('.clickable-img').click((e) => {
+        Swal.fire({
+            imageUrl: $(e.target).attr("src"),
+            imageAlt: 'image',
+            width: window.innerWidth * 0.7,
+            imageWidth: window.innerWidth * 0.65
+        });
+    })
 
 
 </script>
