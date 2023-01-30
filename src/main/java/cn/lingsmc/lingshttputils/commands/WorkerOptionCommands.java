@@ -17,7 +17,7 @@ public class WorkerOptionCommands {
     private WorkerOptionCommands() {
     }
 
-    public static void workerOptionCommands(@NotNull CommandSender sender, String @NotNull [] args) {
+    public static void workerOptionCommands(@NotNull CommandSender sender, String [] args) {
 
         if (!sender.hasPermission(Commands.permission)) {
             sender.sendMessage(String.format("%s你没有执行此命令的权限.", ChatColor.RED));

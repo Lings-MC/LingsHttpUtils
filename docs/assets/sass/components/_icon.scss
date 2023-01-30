@@ -6,36 +6,36 @@
 
 /* Icon */
 
-	.icon {
-		@include icon;
-		border-bottom: none;
-		position: relative;
+.icon {
+  @include icon;
+  border-bottom: none;
+  position: relative;
 
-		> .label {
-			display: none;
-		}
+  > .label {
+    display: none;
+  }
 
-		&:before {
-			line-height: inherit;
-		}
+  &:before {
+    line-height: inherit;
+  }
 
-		&.solid {
-			&:before {
-				font-weight: 900;
-			}
-		}
+  &.solid {
+    &:before {
+      font-weight: 900;
+    }
+  }
 
-		&.brands {
-			&:before {
-				font-family: 'Font Awesome 5 Brands';
-			}
-		}
-	}
+  &.brands {
+    &:before {
+      font-family: 'Font Awesome 5 Brands';
+    }
+  }
+}
 
-	@mixin color-icon($p: null) {
-		.icon {
-			color: _palette($p, fg-light);
-		}
-	}
+@mixin color-icon($p: null) {
+  .icon {
+    color: _palette($p, fg-light);
+  }
+}
 
-	@include color-icon;
+@include color-icon;

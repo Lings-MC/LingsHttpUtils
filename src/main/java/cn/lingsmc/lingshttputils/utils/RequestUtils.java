@@ -17,7 +17,7 @@ public class RequestUtils {
     private RequestUtils() {
     }
 
-    public static @Nullable String request(String module, @NotNull FileConfiguration config, @NotNull LingsHttpUtils plugin) {
+    public static @Nullable String requestHttp(String module, @NotNull FileConfiguration config, @NotNull LingsHttpUtils plugin) {
         int reqTime = config.getInt(String.format("%s.reqTime", module));
         String url = config.getString(String.format("%s.url", module));
         String method;

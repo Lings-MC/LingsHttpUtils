@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class TabComplete implements org.bukkit.command.TabCompleter {
     @Override
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String @NotNull [] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String [] args) {
 
         final String[] root = new String[]{"workers", "help", "reload", "request"};
         final String[] worker = new String[]{"start", "stop"};
@@ -26,7 +26,7 @@ public class TabComplete implements org.bukkit.command.TabCompleter {
         if (args.length == 1) {
             List<String> res = new ArrayList<>();
             for (String val : root) {
-                if (val.contains(args[0])) {
+                if (val.startsWith(args[0])) {
                     res.add(val);
                 }
             }
@@ -37,7 +37,7 @@ public class TabComplete implements org.bukkit.command.TabCompleter {
             if (root[0].equalsIgnoreCase(args[0])) {
                 List<String> res = new ArrayList<>();
                 for (String val : worker) {
-                    if (val.contains(args[1])) {
+                    if (val.startsWith(args[1])) {
                         res.add(val);
                     }
                 }
@@ -49,7 +49,7 @@ public class TabComplete implements org.bukkit.command.TabCompleter {
                 Set<String> modules = config.getKeys(false);
                 modules.remove("version");
                 for (String module : modules) {
-                    if (module.contains(args[1])) {
+                    if (module.startsWith(args[1])) {
                         res.add(module);
                     }
                 }

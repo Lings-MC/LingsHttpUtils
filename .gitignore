@@ -111,4 +111,9 @@ buildNumber.properties
 
 # Common working directory
 run/
+docs/
+*.css
+*.js
+*.scss
+*.html
 

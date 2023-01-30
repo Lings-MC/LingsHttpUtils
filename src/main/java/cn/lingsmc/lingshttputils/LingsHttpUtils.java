@@ -89,8 +89,7 @@ public final class LingsHttpUtils extends JavaPlugin {
             }
         }
         // bStats支持
-        int pluginId = 16397;
-        Metrics metrics = new Metrics(this, pluginId);
+        Metrics metrics = new Metrics(this, 16397);
         // 运行Cycle worker
         WorkerOptions.runWorkers();
     }

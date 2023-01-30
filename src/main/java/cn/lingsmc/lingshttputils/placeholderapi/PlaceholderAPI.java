@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
-import static cn.lingsmc.lingshttputils.utils.RequestUtils.request;
+import static cn.lingsmc.lingshttputils.utils.RequestUtils.requestHttp;
 
 /**
  * @author Crsuh2er0
@@ -37,14 +37,13 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return this.plugin.getDescription().getVersion();
+        return plugin.getDescription().getVersion();
     }
 
     @Override
     public boolean persist() {
         // 这是必要的，否则PAPI会在重载时卸载这个扩展
         return true;
-
     }
 
     @Override
@@ -58,7 +57,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             if (Objects.equals(params, config.getString(String.format("%s.apiname", module)))) {
                 if ("inTime".equalsIgnoreCase(config.getString(String.format("%s.reqMode", module)))) {
                     // inTime
-                    return request(module, config, plugin);
+                    return requestHttp(module, config, plugin);
                 } else {
                     // Cycle
                     return this.plugin.getHttpData().get(module);

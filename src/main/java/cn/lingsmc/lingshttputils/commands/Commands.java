@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @apiNote
  */
 public class Commands implements CommandExecutor {
-    static String helpMessage = String.format("%s未知命令!输入/lhu help查看命令列表!", ChatColor.RED);
+    static String helpMessage = String.format("%s未知命令! 输入/lhu help查看命令列表!", ChatColor.RED);
     static String rootMessage1 = String.format("%s此服务器正在运行 %s%s %s%s by %s", ChatColor.DARK_AQUA, ChatColor.AQUA, LingsHttpUtils.getInstance().getName(), LingsHttpUtils.getInstance().getDescription().getVersion(), ChatColor.DARK_AQUA, "§aC§br§cs§du§eh§a2§be§cr§d0");
     static String rootMessage2 = String.format("%s命令列表: %s/lhu help", ChatColor.DARK_AQUA, ChatColor.AQUA);
     static String permission = "lingshttputils.admin";
@@ -22,7 +22,7 @@ public class Commands implements CommandExecutor {
     static String workersMessage = String.format("%s/lhu workers <start/stop> %s启动/关闭Cycle Workers", ChatColor.AQUA, ChatColor.GREEN);
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String [] args) {
         if (args.length < 1) {
             sender.sendMessage(rootMessage1);
             sender.sendMessage(rootMessage2);
