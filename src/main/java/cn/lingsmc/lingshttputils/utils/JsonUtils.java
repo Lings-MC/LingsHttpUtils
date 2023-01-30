@@ -21,7 +21,7 @@ public class JsonUtils {
     private JsonUtils() {
     }
 
-    public static @Nullable String getValue(String jsonString, String @NotNull [] keys) {
+    public static @Nullable String getValue(String jsonString, String [] keys) {
         try {
             if (plugin.gson) {
                 return getValueGson(jsonString, keys);
@@ -49,7 +49,7 @@ public class JsonUtils {
     /**
      * 使用json-simple(1.13-)
      */
-    public static @Nullable String getValueJsonSimple(String jsonString, String @NotNull [] keys) {
+    public static @Nullable String getValueJsonSimple(String jsonString, String [] keys) {
         JSONObject json = parseStrJsonsimple(jsonString);
         if (Objects.isNull(json)) {
             return null;
@@ -73,7 +73,7 @@ public class JsonUtils {
     /**
      * 使用Gson(1.14+)
      */
-    public static String getValueGson(String str, String @NotNull [] keys) {
+    public static String getValueGson(String str, String [] keys) {
         JsonObject value = parseStrGson(str);
         for (int i = 0; i < keys.length - 1; i++) {
             value = value.get(keys[i]).getAsJsonObject();

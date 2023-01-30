@@ -22,7 +22,7 @@ public class Commands implements CommandExecutor {
     static String workersMessage = String.format("%s/lhu workers <start/stop> %s启动/关闭Cycle Workers", ChatColor.AQUA, ChatColor.GREEN);
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String [] args) {
         if (args.length < 1) {
             sender.sendMessage(rootMessage1);
             sender.sendMessage(rootMessage2);
